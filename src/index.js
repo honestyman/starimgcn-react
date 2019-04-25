@@ -1,8 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+
 import * as serviceWorker from './serviceWorker';
+import './index.css';
+
+import DocumentTitle from 'react-document-title'
+import Header from './layouts/Header/header'
+ 
+function App() {
+  return (
+    <DocumentTitle title={`快来pick你喜欢的爱豆 | starImg`}>
+      <div className="App">
+        <Header />
+    </div>
+    </DocumentTitle>
+  );
+}
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
