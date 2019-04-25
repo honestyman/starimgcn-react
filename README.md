@@ -43,11 +43,5 @@ webpack 的 config 文件，在 `config` 目录下。
 2. package.json中配置如下代码
 
 ```js
-"proxy": {
-    "/*": {
-      "target": "https://api.starimg.cn",
-      "changeOrigin": true,
-      "secure": false
-    }
-  }
+ "proxy": "https://api.starimg.cn"
 ```

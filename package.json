@@ -138,5 +138,6 @@
     "presets": [
       "react-app"
     ]
-  }
+  },
+  "proxy": "https://api.starimg.cn"
 }
