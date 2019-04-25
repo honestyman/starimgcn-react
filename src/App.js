@@ -1,10 +1,12 @@
 import React from 'react';
+import DocumentTitle from 'react-document-title'
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
-    <div className="App">
+    <DocumentTitle title={`快来pick你喜欢的爱豆 | starImg`}>
+      <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -20,6 +22,7 @@ function App() {
         </a>
       </header>
     </div>
+    </DocumentTitle>
   );
 }
 
