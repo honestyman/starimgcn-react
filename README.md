@@ -2,7 +2,7 @@
 
 ## 项目介绍
 
-此项目是 [starimg.cn](https://starimg.cm)网站的 react 版本。采用前后端分离的模式。
+此项目是 [starimg.cn](https://starimg.cm)网站的 react 版本。采用前后端分离的模式。当前项目正在开发阶段，会一直更新。。。
 
 ## Dependencies
 
@@ -12,8 +12,6 @@
 - `react-chunk`
 - `gestalt` [Gestalt](https://github.com/pinterest/gestalt)
 - `axios`
-
-项目正在开发阶段，会一直更新。。。
 
 ## `config` file
 
