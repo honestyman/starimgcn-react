@@ -6,8 +6,10 @@ import './index.css';
 
 import DocumentTitle from 'react-document-title'
 import Header from './layouts/Header/header'
- 
+import {getStarDetail} from "./apis/request";
+
 function App() {
+  getStarDetail();
   return (
     <DocumentTitle title={`快来pick你喜欢的爱豆 | starImg`}>
       <div className="App">
