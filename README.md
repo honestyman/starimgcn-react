@@ -1,68 +1,48 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# starImgCn-React
+
+## 项目介绍
+
+此项目是 [starimg.cn](https://starimg.cm)网站的 react 版本。采用前后端分离的模式。
+
+使用 `react` + `redux` + `react-router`+ `react-chunk` 等依赖。
+
+## `config` file
+
+webpack 的 config 文件，在 `config` 目录下。
 
 ## Available Scripts
 
-In the project directory, you can run:
+在项目根目录下，你可以运行一下命令:
 
 ### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+开发模式。
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+在浏览器中打开 [http://localhost:3000](http://localhost:3000) 查看页面.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+测试模式
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+生产模式。生成的文件在 `bulid` 文件件下。
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### `serve -s build`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+在浏览器中打开 [http://localhost:5000/](http://localhost:5000/) 查看 `prod` 模式下的页面.
 
-### `npm run eject`
+### 代理
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. 确保你自己已经使用 npm run eject 命令，这个是生成本地webpack配置文件
+2. package.json中配置如下代码
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```js
+"proxy": {
+    "/*": {
+      "target": "https://api.starimg.cn",
+      "changeOrigin": true,
+      "secure": false
+    }
+  }
+```
