@@ -6,6 +6,8 @@
 
 使用 `react` + `redux` + `react-router`+ `react-chunk` 等依赖。
 
+项目正在开发阶段，会一直更新。。。
+
 ## `config` file
 
 webpack 的 config 文件，在 `config` 目录下。
@@ -16,9 +18,7 @@ webpack 的 config 文件，在 `config` 目录下。
 
 ### `npm start`
 
-开发模式。
-
-在浏览器中打开 [http://localhost:3000](http://localhost:3000) 查看页面.
+开发模式。在浏览器中打开 [http://localhost:3000](http://localhost:3000) 查看页面.
 
 ### `npm test`
 
