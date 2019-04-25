@@ -4,7 +4,14 @@
 
 此项目是 [starimg.cn](https://starimg.cm)网站的 react 版本。采用前后端分离的模式。
 
-使用 `react` + `redux` + `react-router`+ `react-chunk` 等依赖。
+## Dependencies
+
+- `react`
+- `redux`
+- `react-router`
+- `react-chunk`
+- `gestalt` [Gestalt](https://github.com/pinterest/gestalt)
+- `axios`
 
 项目正在开发阶段，会一直更新。。。
 
@@ -32,7 +39,7 @@ webpack 的 config 文件，在 `config` 目录下。
 
 在浏览器中打开 [http://localhost:5000/](http://localhost:5000/) 查看 `prod` 模式下的页面.
 
-### 代理
+## 代理
 
 1. 确保你自己已经使用 npm run eject 命令，这个是生成本地webpack配置文件
 2. package.json中配置如下代码
