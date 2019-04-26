@@ -1,0 +1,16 @@
+.mobile_header{
+    .bottom_header{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+    // svg[aria-label=Person]{
+    //     float: right;
+    // }
+    svg[aria-label=Collect],svg[aria-label=Search]{
+        margin: 0 auto
+    }
+    svg[role=img]{
+        margin: 0 auto;
+    }
+}

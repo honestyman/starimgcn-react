@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import WebHeader from '../../components/WebHeader'
+import MobileHeader from '../../components/MobileHeader'
 export default class Haeder extends Component { 
 
     constructor(props) {
@@ -23,7 +24,7 @@ export default class Haeder extends Component {
         return (
             <header className='header'>
                 {
-                    this.state.isMobile ? null : <WebHeader />
+                    this.state.isMobile ? <MobileHeader /> : <WebHeader />
                 }
             </header>
         )
