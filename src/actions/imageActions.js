@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as util from '../utils/window_util'
 
 import { HOME_FETCH_FAIL, HOME_FETCH_SUCCESS, HOME_FETCH_REQUEST } from '../actionTypes/imageActionTypes'
 
@@ -12,8 +13,9 @@ const  actionCreator= (type,data) =>({
 export const getRecentImages = (url, page) => {
     return (dispatch, getState) => {
         dispatch(actionCreator(HOME_FETCH_REQUEST));
-        return new Promise((resolve, reject) => { 
-            axios.get(url + '?page=' + page)
+        return new Promise((resolve, reject) => {
+            let _url = util.replaceUrl(url);
+            axios.get(_url + '?page=' + page)
                 .then(result => { 
                     console.log(result.data);
                     if (result.data.total >0) {
