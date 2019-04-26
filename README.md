@@ -6,6 +6,8 @@
 
 ## Dependencies
 
+主要依赖：
+
 - `react`
 - `redux`
 - `react-router`
@@ -13,6 +15,7 @@
 - `redux-thunk`
 - `gestalt` [Gestalt](https://github.com/pinterest/gestalt)
 - `axios`
+- ...
 
 ## `config` file
 
