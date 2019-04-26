@@ -35,8 +35,8 @@ export function getWindowHeight(){
 
 export function replaceUrl(url) {
     if(window.location.host.indexOf('starimg.cn') !==-1){
-        return url;
-    }else{
         return 'https://api.starimg.cn'+url;
+    }else{
+        return url;
     }
 }
