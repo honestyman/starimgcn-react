@@ -37,17 +37,19 @@ export default class Pin extends Component {
         let winWidth = window.innerWidth ? window.innerWidth : document.body.clientWidth
     
         width = height>windowHeight ? windowHeight/height*width : width;
-        let top = height<windowHeight ? (windowHeight-height)/2 : 0;
-        this.setState({
-            show_image: true,
-            img_props: {
+        let top = height < windowHeight ? (windowHeight - height) / 2 : 0;
+        let img_props = {
                 top: top,
                 width: width,
                 height: height>windowHeight ? windowHeight : height,
                 left: ((winWidth-width)/2).toFixed(2),
                 img_url: this.item.origin === '微博' ? (this.item.pic_detail ? this.item.pic_detail.large.url : this.item.display_url)
                     :(this.item.cos_url ?  'https://star-1256165736.picgz.myqcloud.com/'+this.item.cos_url : this.item.display_url)
-            }
+        }
+        console.log(img_props);
+        this.setState({
+            show_image: true,
+            img_props: img_props
         })
     };
     closeImageViewer(){
@@ -56,24 +58,19 @@ export default class Pin extends Component {
 
     handleMouseEnter() {
         this.setState({
-            hovered: this.clientWidth > 768
+            hovered: true
         })
     }
     handleMouseLeave(){
         this.setState({ hovered: false });
     }
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return nextProps.data.id !== this.item.id;
-    }
+    // shouldComponentUpdate(nextProps, nextState, nextContext) {
+    //     return nextProps.data.id !== this.item.id;
+    // }
 
     render() {
-        const style = {
-            clear:'both',
-            overflow:'hidden',
-            width:'100%',
-        };
         return (
-            <div style={style} className='pinItem' key={this.item.id}>
+            <div className='pinItem' key={this.item.id}>
                 <Box paddingX={2} paddingY={2}  shape={'rounded'} color={'white'}>
                     <Card
                         paddingX={3}
@@ -82,7 +79,7 @@ export default class Pin extends Component {
                         onMouseLeave={this.handleMouseLeave}
                         >
                         <Box shape={'rounded'} color={'white'}>
-                            <div className={'pinImage'} onClick={this.showImageViewer}>
+                            <div className='pinImage' onClick={this.showImageViewer}>
                                 <Image
                                     alt={this.item.text}
                                     // fit="cover"
@@ -130,7 +127,6 @@ export default class Pin extends Component {
                                 </Box>
                                 : null
                         }
-
                     </Card>
                 </Box>
                 {this.state.show_image && (

@@ -7,3 +7,18 @@
     -webkit-transform:scale(1.005); /* Safari 和 Chrome */
     -o-transform:scale(1.005);
   }
+  .pinImage{
+    border-radius: 8px;
+    cursor: -webkit-zoom-in;
+    cursor: -moz-zoom-in;
+    cursor: zoom-in;
+    >div{
+      border-radius: 8px;
+      //margin: -1px;
+    }
+  }
+  .pinItem{
+    clear:'both';
+    overflow:'hidden';
+    width:'100%';
+  }

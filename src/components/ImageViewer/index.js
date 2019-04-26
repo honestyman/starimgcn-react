@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import ReactDom from 'react-dom';
-
+import './index.scss';
 // 图片大图预览
 class ImageViewerBox extends Component{
     constructor(props) {

@@ -1,0 +1,23 @@
+.image-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+  }
+  .image-box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    line-height: 0;
+    background-color: rgba(0,0,0,.8);
+    overflow: auto;
+    .img{
+      position: absolute;
+      transition: all .2s;
+      cursor: zoom-out;
+    }
+  }

@@ -13,6 +13,7 @@ export default class PinsContail extends Component {
         super(props);
         this.timer = null;
         this.url = '/getRecentImages';
+        this.winWidth = document.documentElement.clientWidth;
         this.state = {
             // pins: items,
             data: [],
@@ -68,7 +69,7 @@ export default class PinsContail extends Component {
         console.log(this.state.data)
         return (
             <div className="pinsContailer">
-                <Box paddingX={8} marginTop={3}>
+                <Box paddingX={this.winWidth > 768 ? 8 : 2} marginTop={3}>
                     <Masonry
                         comp={Pin}
                         items={this.state.data}
