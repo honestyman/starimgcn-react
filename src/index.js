@@ -1,21 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import DocumentTitle from 'react-document-title'
 
+import store from './store'
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
-import DocumentTitle from 'react-document-title'
 import Header from './layouts/Header/header'
-import {getStarDetail} from "./apis/request";
 
 function App() {
-  getStarDetail();
   return (
-    <DocumentTitle title={`快来pick你喜欢的爱豆 | starImg`}>
-      <div className="App">
-        <Header />
-    </div>
-    </DocumentTitle>
+    <Provider store={store}>
+      <DocumentTitle title={`快来pick你喜欢的爱豆 | starImg`}>
+        <div className="App">
+          <Header />
+        </div>
+      </DocumentTitle>
+    </Provider>
   );
 }
 

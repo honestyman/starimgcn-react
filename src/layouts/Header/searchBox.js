@@ -1,16 +1,31 @@
 import React, { Component} from "react";
 import { SearchField } from 'gestalt';
-
+// import axios from 'axios'
+import { searchStar } from '../../actions/searchStarActions'
+import store from '../../store'
 export default class SearchBox extends Component { 
     constructor(props) { 
         super(props);
         this.state = {
-            value: ''
+            value: '',
+            isFetching: false
         }
+        this.requestStatus = 'request'
         this.input = null;
+        this.handleChange = this.handleChange.bind(this)
     }
     componentDidMount() { 
-        console.log(this.state.value)
+        // console.log(this.state.value)
+    }
+    handleChange(key) { 
+        console.log(key)
+        if (this.requestStatus !== 'requesting' && key.length >= 2) { 
+            this.requestStatus = 'requesting'
+            store.dispatch(searchStar('/searchStar', key)).then(res => { 
+                console.log(res.data);
+                console.log(store.getState().star.stars)
+            })
+        }
     }
     render() { 
         return (
@@ -18,10 +33,14 @@ export default class SearchBox extends Component {
                 <SearchField
                     accessibilityLabel="Demo Search Field"
                     id="searchField"
-                    onChange={({ value, input }) => { this.setState({ value }); this.input = input }}
-                    placeholder="Search and explore,now no word"
+                    onChange={
+                        ({ value}) => {
+                            this.setState({ value });
+                            this.handleChange(value)
+                        }}
+                    placeholder="输入你想 pick 的 star 的名字"
                     value={this.state.value}
-                    onBlur={({ event }) => { console.log(event)}}
+                    onBlur={({ event }) => { console.log('----'+event.target.value)}}
                 />
         </div>
         )
