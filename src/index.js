@@ -7,7 +7,7 @@ import store from './store'
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
-import Header from './layouts/Header/header'
+import Header from './layouts/Header'
 
 function App() {
   return (

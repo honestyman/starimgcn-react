@@ -1,9 +1,9 @@
 import React, { Component} from "react";
 import { Text,Box,Button,Link,Sticky,Divider} from 'gestalt';
-import SearchBox from './searchBox'
+import SearchBox from '../WebSaarchBox'
 // import { IconButton } from 'gestalt';
 
-import './header.scss';
+import './index.scss';
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -15,6 +15,7 @@ class Header extends Component {
             value : e.target.value
         })
     }
+    
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         return false;
     }
@@ -39,7 +40,7 @@ class Header extends Component {
                         </Box>
                         <Box paddingX={2} shape={'pill'} marginLeft={-2} marginRight={-2}>
                             <Link href={'/explore'}>
-                                <Button color="white" text={'发现'}/>
+                                <Button color="white" text={'坑现'}/>
                             </Link>
                         </Box>
                         {/*<Box paddingX={2}>*/}

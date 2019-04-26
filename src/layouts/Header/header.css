@@ -1,7 +1,0 @@
-/* header */
-.header a, .header a:hover {
-  text-decoration: none; }
-
-.header a > button {
-  padding: 10px 16px;
-  border-radius: 20px; }

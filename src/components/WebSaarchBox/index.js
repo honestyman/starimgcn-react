@@ -1,8 +1,9 @@
 import React, { Component} from "react";
 import { SearchField } from 'gestalt';
-// import axios from 'axios'
 import { searchStar } from '../../actions/searchStarActions'
+
 import store from '../../store'
+
 export default class SearchBox extends Component { 
     constructor(props) { 
         super(props);
