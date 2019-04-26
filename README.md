@@ -4,7 +4,7 @@
 
 此项目是 [starimg.cn](https://starimg.cm)网站的 react 版本。采用前后端分离的模式。当前项目正在开发阶段，会一直更新。。。
 
-线上 demo 站点： [test.starimg.cn](http://test.starimg.cm)
+线上 demo 站点： [test.starimg.cn](http://test.starimg.cn)
 
 ## Dependencies
 
