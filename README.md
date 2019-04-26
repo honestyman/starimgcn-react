@@ -9,7 +9,7 @@
 - `react`
 - `redux`
 - `react-router`
-- `react-chunk`
+- `redux-thunk`
 - `gestalt` [Gestalt](https://github.com/pinterest/gestalt)
 - `axios`
 
