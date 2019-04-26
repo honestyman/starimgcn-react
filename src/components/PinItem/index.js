@@ -3,6 +3,8 @@ import { Image,Card,Box,Avatar,Link,Icon, Text} from 'gestalt';
 import { BOX_COLOR} from '../../constants'
 import ImageViewerBox from './ImageViewerBox';
 
+import './index.scss';
+
 const imageColor = BOX_COLOR;
 let page_type = document.getElementsByTagName('meta')['page-type'].getAttribute('content');
 class Pin extends Component {
@@ -71,7 +73,7 @@ class Pin extends Component {
             width:'100%',
         };
         return (
-            <div style={style} className={'pinItem'} key={this.item.id}>
+            <div style={style} className='pinItem' key={this.item.id}>
                 <Box paddingX={2} paddingY={2}  shape={'rounded'} color={'white'}>
                     <Card
                         paddingX={3}
@@ -95,7 +97,7 @@ class Pin extends Component {
                                         ('https://star-1256165736.picgz.myqcloud.com/'+this.item.cos_url+'!small')}
                                 >
                                     <Box paddingX={3} paddingY={1} position={'absolute'} bottom={true} left={true} shape={'rounded'} color={'white'} marginLeft={3} marginBottom={3} display={this.state.hovered ? 'block' : 'none'}>
-                                        <Link href={this.item.origin == '微博' ? this.item.origin_url : 'https://instagram.com/p/'+this.item.code}>
+                                        <Link href={this.item.origin === '微博' ? this.item.origin_url : 'https://instagram.com/p/'+this.item.code}>
                                             <Box alignItems="center" display="flex">
                                                 <Box marginRight={1} padding={1}>
                                                     <Icon icon="arrow-up-right" accessibilityLabel="link" color="darkGray" inline={true}/>

@@ -1,0 +1,9 @@
+.pinItem img:first-child {
+    border-radius: 8px;
+    box-shadow: 1px 1px 6px #dadada;
+    transform: scale(1.005);
+    -ms-transform:scale(1.005);     /* IE 9 */
+    -moz-transform:scale(1.005);     /* Firefox */
+    -webkit-transform:scale(1.005); /* Safari 和 Chrome */
+    -o-transform:scale(1.005);
+  }
