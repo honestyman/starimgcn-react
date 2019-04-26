@@ -1,7 +1,7 @@
 // Actions
 // import { SEARCH_FETCH_REQUEST,SEARCH_FETCH_SUCCESS,SEARCH_FETCH_FAIL} from '../actions/searchStarActions'
 
-// initial sate
+// initial state
 const initState = {
     search_value: '',
     stars: {
@@ -42,7 +42,7 @@ export default function (state = initState, action) {
                     lastUpdated: new Date().getTime(),
                     current_page: action.result.stars.current_page,
                     last_page: action.result.stars.last_page,
-                    data: [...state.stars.data,action.result.stars.data] 
+                    data: [...state.stars.data,...action.result.stars.data] 
                 }
             }
         }

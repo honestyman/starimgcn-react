@@ -1,7 +1,7 @@
 import React, { Component} from 'react'
 
 import Header from '../../layouts/Header/'
-
+import PinsContail from '../../components/PinsContainer'
 export default class WebApp extends Component { 
     constructor(props, context) {
         super(props, context)
@@ -14,6 +14,7 @@ export default class WebApp extends Component {
         return (
             <div className="webapp">
                 <Header />
+                <PinsContail />
             </div>
         )
     }

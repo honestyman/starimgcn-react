@@ -1,13 +1,13 @@
 import React,{Component} from "react";
 import { Image,Card,Box,Avatar,Link,Icon, Text} from 'gestalt';
 import { BOX_COLOR} from '../../constants'
-import ImageViewerBox from './ImageViewerBox';
+import ImageViewerBox from '../ImageViewer';
 
 import './index.scss';
 
 const imageColor = BOX_COLOR;
 let page_type = document.getElementsByTagName('meta')['page-type'].getAttribute('content');
-class Pin extends Component {
+export default class Pin extends Component {
     constructor(props) {
         super(props);
         this.item = props.data;
@@ -54,7 +54,7 @@ class Pin extends Component {
         this.setState({show_image: false})
     };
 
-    handleMouseEnter(){
+    handleMouseEnter() {
         this.setState({
             hovered: this.clientWidth > 768
         })
@@ -96,7 +96,7 @@ class Pin extends Component {
                                         this.item.pic_detail.url :this.item.display_url) :
                                         ('https://star-1256165736.picgz.myqcloud.com/'+this.item.cos_url+'!small')}
                                 >
-                                    <Box paddingX={3} paddingY={1} position={'absolute'} bottom={true} left={true} shape={'rounded'} color={'white'} marginLeft={3} marginBottom={3} display={this.state.hovered ? 'block' : 'none'}>
+                                    <Box paddingX={3} paddingY={1} position='absolute' bottom={true} left={true} shape={'rounded'} color={'white'} marginLeft={3} marginBottom={3} display={this.state.hovered ? 'block' : 'none'}>
                                         <Link href={this.item.origin === '微博' ? this.item.origin_url : 'https://instagram.com/p/'+this.item.code}>
                                             <Box alignItems="center" display="flex">
                                                 <Box marginRight={1} padding={1}>
@@ -147,5 +147,3 @@ class Pin extends Component {
         );
     }
 }
-
-export default Pin;

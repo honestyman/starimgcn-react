@@ -39,7 +39,7 @@ class Header extends Component {
                     </Box>
                     <Box paddingX={2} shape={'pill'} marginLeft={-2} marginRight={-2}>
                         <Link href={'/explore'}>
-                            <Button color="white" text={'坑现'}/>
+                            <Button color="white" text={'发现'}/>
                         </Link>
                     </Box>
                     {/*<Box paddingX={2}>*/}

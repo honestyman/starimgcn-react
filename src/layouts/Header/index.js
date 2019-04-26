@@ -22,11 +22,7 @@ export default class Haeder extends Component {
 
     render() { 
         return (
-            <header className='header'>
-                {
-                    this.state.isMobile ? <MobileHeader /> : <WebHeader />
-                }
-            </header>
+            this.state.isMobile ? <MobileHeader /> : <WebHeader />
         )
     }
     
