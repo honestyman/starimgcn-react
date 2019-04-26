@@ -5,17 +5,15 @@ import DocumentTitle from 'react-document-title'
 
 import store from './store'
 import * as serviceWorker from './serviceWorker';
-import './index.css';
 
-import Header from './layouts/Header'
+import './index.css';
+import WebApp from './containers/WebApp'
 
 function App() {
   return (
     <Provider store={store}>
       <DocumentTitle title={`快来pick你喜欢的爱豆 | starImg`}>
-        <div className="App">
-          <Header />
-        </div>
+        <WebApp />
       </DocumentTitle>
     </Provider>
   );
