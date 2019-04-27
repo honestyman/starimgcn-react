@@ -15,7 +15,6 @@ export default class PinsContail extends Component {
         this.url = '/getRecentImages';
         this.winWidth = document.documentElement.clientWidth;
         this.state = {
-            // pins: items,
             data: [],
             last_page:1,
             show_spinner:false,
@@ -30,22 +29,22 @@ export default class PinsContail extends Component {
         this.updatePins();
         let _this = this;
         window.addEventListener('scroll', () => {
-            _this.handleScroll(_this);
+            _this.handleScroll();
         });
     }
     // 距离底部30px时，加载更多内容
-    handleScroll(th) {
+    handleScroll() {
         let scrollTop = until.getScrollTop();
         let scrollHeight = until.getScrollHeight();
         let windowHeight = until.getWindowHeight();
-        if (scrollTop + windowHeight + 30 > scrollHeight && !this.isFetching) {
+        if ((scrollTop + windowHeight + 30 > scrollHeight) && !this.state.isFetching) {
             this.updatePins()
         }
     }
     // get pins
     updatePins() { 
            this.setState({
-                isFetching: false,
+                isFetching: true,
                 show_spinner: true
             })
             store.dispatch(getRecentImages(this.url, this.state.current_page + 1))
@@ -67,7 +66,7 @@ export default class PinsContail extends Component {
     }
     render() {
         return (
-            <div className="pinsContailer">
+            <div className="pinsContainer">
                 <Box paddingX={this.winWidth > 768 ? 8 : 2} marginTop={3}>
                     <Masonry
                         comp={Pin}

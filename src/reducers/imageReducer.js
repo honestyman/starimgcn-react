@@ -26,7 +26,7 @@ const initState = {
 export default function (state = initState, action) { 
     switch (action.type) {
         case HOME_FETCH_REQUEST: { 
-            console.log('---request');
+            console.log('---request--start--');
             return {
                 ...state,
                 home_pins: {
@@ -37,6 +37,7 @@ export default function (state = initState, action) {
             }; 
         }
         case HOME_FETCH_SUCCESS: { 
+            console.log('---request--success--');
             const result = action.pins;
             let _state = state.home_pins;
             return {

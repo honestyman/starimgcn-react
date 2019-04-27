@@ -17,7 +17,7 @@ export const getRecentImages = (url, page) => {
             let _url = util.replaceUrl(url);
             axios.get(_url + '?page=' + page)
                 .then(result => { 
-                    console.log(result.data);
+                    // console.log(result.data);
                     if (result.data.total >0) {
                         dispatch(actionCreator(HOME_FETCH_SUCCESS,result.data));
                         resolve(Object.assign(result, {action_type: HOME_FETCH_SUCCESS}));
