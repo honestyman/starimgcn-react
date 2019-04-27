@@ -50,28 +50,39 @@ export default class Pin extends Component {
         this.showImageViewer = this.showImageViewer.bind(this);
         this.closeImageViewer = this.closeImageViewer.bind(this);
     }
-    showImageViewer(){
-        let width = this.item.origin === '微博' ? (this.item.pic_detail.large  ?
+    showImageViewer() {
+        let width = this.item.origin === '微博' ? (this.item.pic_detail.large ?
             this.item.pic_detail.large.geo.width : (this.item.pic_detail.geo ? this.item.pic_detail.geo.width : 360)) :
-                    (this.item.pic_detail ? this.item.pic_detail[0].config_width : 120);
-        let height =this.item.origin === '微博' ? (this.item.pic_detail.large  ?
-            this.item.pic_detail.large.geo.height : (this.item.pic_detail.geo ? this.item.pic_detail.geo.height : 540)):
+            (this.item.pic_detail ? this.item.pic_detail[0].config_width : 120);
+        let height = this.item.origin === '微博' ? (this.item.pic_detail.large ?
+            this.item.pic_detail.large.geo.height : (this.item.pic_detail.geo ? this.item.pic_detail.geo.height : 540)) :
             (this.item.pic_detail ? this.item.pic_detail[0].config_height : 120);
    
-        let windowHeight = document.compatMode === "CSS1Compat" ? document.documentElement.clientHeight : document.body.clientHeight;
+        let winHeight = document.compatMode === "CSS1Compat" ? document.documentElement.clientHeight : document.body.clientHeight;
         let winWidth = window.innerWidth ? window.innerWidth : document.body.clientWidth
-    
-        width = height>windowHeight ? windowHeight/height*width : width;
-        let top = height < windowHeight ? (windowHeight - height) / 2 : 0;
+        // 图片高度超过视窗
+        let top = 0;
+        if (height >= winHeight) {
+            let rate = width / height;
+            height = winHeight;
+            width = rate* winHeight;
+            top = height <= winHeight ? (winHeight - height) / 2 : 0;
+        }
+        if (width >= winWidth) {
+            let rate = winWidth / width;
+            width = winWidth;
+            height = height * rate; 
+            top = winHeight>height ? (winHeight-height)/2 : 0
+        }
+  
         let img_props = {
                 top: top,
                 width: width,
-                height: height>windowHeight ? windowHeight : height,
+                height: height,
                 left: ((winWidth-width)/2).toFixed(2),
                 img_url: this.item.origin === '微博' ? (this.item.pic_detail ? this.item.pic_detail.large.url : this.item.display_url)
                     :(this.item.cos_url ?  'https://star-1256165736.picgz.myqcloud.com/'+this.item.cos_url : this.item.display_url)
         }
-        console.log(img_props);
         this.setState({
             show_image: true,
             img_props: img_props
