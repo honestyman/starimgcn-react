@@ -1,22 +1,19 @@
 // import 'babel-polyfill';
 import React, { Component } from 'react';
-import { Masonry,Box,Spinner} from 'gestalt';
-import Pin from '../PinItem';
+import { Masonry,Box,Spinner,Text,Divider} from 'gestalt';
+import StarItem from '../StarItem';
 import store from '../../store';
-import { getRecentImages } from '../../actions/pinsActions';
+import { getStarLists } from '../../actions/starsActions';
 import * as until from '../../utils/window_util'
-import './index.scss';
 // import { HOME_FETCH_FAIL, HOME_FETCH_SUCCESS} from '../../actionTypes/imageActionTypes'
 
-export default class PinsContail extends Component {
+export default class StarListContainer extends Component {
     constructor(props) {
         super(props);
-        this.timer = null;
-        this.url = '/getRecentImages';
         this.winWidth = document.documentElement.clientWidth;
         this.state = {
             data: [],
-            last_page:1,
+            last_page:2,
             show_spinner:false,
             current_page: 0,
             isFetching: false,
@@ -27,7 +24,7 @@ export default class PinsContail extends Component {
     // 你应该在 componentDidMount 生命周期方法内发送 AJAX 请求数据。
     // 这样你才能够在请求的数据到达时使用 setState 更新你的组件。
     componentDidMount() {
-        this.updatePins();
+        this.updateStars();
         let _this = this;
         window.addEventListener('scroll', () => {
             _this.handleScroll();
@@ -39,18 +36,20 @@ export default class PinsContail extends Component {
         let scrollHeight = until.getScrollHeight();
         let windowHeight = until.getWindowHeight();
         if ((scrollTop + windowHeight + 30 > scrollHeight) && !this.state.isFetching) {
-            this.updatePins()
+            if (this.state.last_page >= this.state.current_page) {
+                this.updateStars()
+            }
         }
     }
     // get pins
-    updatePins() { 
+    updateStars() { 
         this.setState({
             isFetching: true,
             show_spinner: true,
         })
-        store.dispatch(getRecentImages(this.url, this.state.current_page + 1))
+        store.dispatch(getStarLists('/getStars', this.state.current_page + 1))
             .then((res) => {
-                const state = store.getState().pins;
+                const state = store.getState().stars;
                 this.setState({
                     ...state,
                     show_spinner:false
@@ -63,22 +62,28 @@ export default class PinsContail extends Component {
             })
     }
     componentWillUnmount() { 
-        clearTimeout(this.timer);
+    
     }
     render() {
         return (
-            <div className="pinsContainer">
-                <Box paddingX={this.winWidth > 768 ? 8 : 2} marginTop={3}>
-                    <Masonry
-                        comp={Pin}
-                        items={this.state.data}
-                        loadItems={(event)=>{}}
-                        minCols={2}
-                        gutterWidth = {5}
-                        flexible = {true}
-                    />
-                    <Box marginBottom={6}>
-                        <Spinner accessibilityLabel={'Load more Pins'} show={this.state.show_spinner}/>
+            <div className='pinsContainer'>
+                <Box  display='flex' justifyContent='center'>
+                    <Box column={this.winWidth > 768 ? 8 : 12} paddingX={this.winWidth > 768 ? 8 : 2} marginTop={3} alignContent='center'>
+                        <Box paddingY={2}>
+                           <Text size='md'>收录明星列表</Text> 
+                         </Box>
+                        <Divider />
+                         <Masonry
+                            comp={StarItem}
+                            items={this.state.data}
+                            loadItems={(event)=>{}}
+                            minCols={2}
+                            gutterWidth = {5}
+                            flexible = {true}
+                        />
+                        <Box marginBottom={6}>
+                            <Spinner accessibilityLabel={'Load more Pins'} show={this.state.show_spinner}/>
+                        </Box>
                     </Box>
                 </Box>
             </div>

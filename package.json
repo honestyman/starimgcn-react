@@ -139,5 +139,8 @@
       "react-app"
     ]
   },
-  "proxy": "https://api.starimg.cn"
+  "proxy": "https://api.starimg.cn",
+  "devDependencies": {
+    "react-router-dom": "^5.0.0"
+  }
 }

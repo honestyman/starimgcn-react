@@ -1,8 +1,9 @@
 // Actions
-import { STARS_FETCH_FAIL, STARS_FETCH_SUCCESS, STARS_FETCH_REQUEST} from '../actionTypes/starsActionTypes'
+import { SEARCH_FETCH_REQUEST,SEARCH_FETCH_SUCCESS,SEARCH_FETCH_FAIL} from '../actionTypes/searchActionTypes'
 
 // initial state
 const initState = {
+    search_value: '',
     isFetching: true,
     lastUpdated: new Date().getTime(),
     current_page: 1,
@@ -12,7 +13,7 @@ const initState = {
 
 export default function (state = initState, action) {
     switch (action.type) { 
-        case STARS_FETCH_REQUEST: {
+        case SEARCH_FETCH_REQUEST: {
             console.log('---request');
             return {
                 ...state,
@@ -20,7 +21,7 @@ export default function (state = initState, action) {
                 lastUpdated: new Date().getTime()
             }; 
         }
-        case STARS_FETCH_SUCCESS: { 
+        case SEARCH_FETCH_SUCCESS: { 
             console.log('request-success--')
             return {
                 ...state,
@@ -31,7 +32,7 @@ export default function (state = initState, action) {
                 data: [...state.data,...action.result.data] 
             }
         }
-        case STARS_FETCH_FAIL: { 
+        case SEARCH_FETCH_FAIL: { 
             return {
                 ...state,
                 isFetching: false,
