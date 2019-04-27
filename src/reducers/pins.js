@@ -1,4 +1,4 @@
-import { HOME_FETCH_FAIL, HOME_FETCH_SUCCESS, HOME_FETCH_REQUEST } from '../actionTypes/imageActionTypes'
+import { PINS_FETCH_FAIL, PINS_FETCH_SUCCESS, PINS_FETCH_REQUEST } from '../actionTypes/pinsActionTypes'
 const initState = {
         current_page: 1,
         last_page: 1,
@@ -9,7 +9,7 @@ const initState = {
 
 export default function (state = initState, action) { 
     switch (action.type) {
-        case HOME_FETCH_REQUEST: { 
+        case PINS_FETCH_REQUEST: { 
             console.log('---request-pins-start--');
             return {
                 ...state,
@@ -17,7 +17,7 @@ export default function (state = initState, action) {
                 lastUpdated: new Date().getTime()
             }; 
         }
-        case HOME_FETCH_SUCCESS: { 
+        case PINS_FETCH_SUCCESS: { 
             console.log('---request-pins-success--');
             const result = action.pins;
             return {
@@ -30,7 +30,7 @@ export default function (state = initState, action) {
     
             }; 
         }
-        case HOME_FETCH_FAIL: { 
+        case PINS_FETCH_FAIL: { 
             console.log('---request-pins-fail--');
             return {
                 ...state,

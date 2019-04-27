@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Masonry,Box,Spinner} from 'gestalt';
 import Pin from '../PinItem';
 import store from '../../store';
-import { getRecentImages } from '../../actions/imageActions';
+import { getRecentImages } from '../../actions/pinsActions';
 import * as until from '../../utils/window_util'
 import './index.scss';
 // import { HOME_FETCH_FAIL, HOME_FETCH_SUCCESS} from '../../actionTypes/imageActionTypes'
