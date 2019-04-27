@@ -1,12 +1,34 @@
 import React,{Component} from "react";
-import { Image,Card,Box,Avatar,Link,Icon, Text} from 'gestalt';
+import { Image,Card,Box,Link,Icon, Text} from 'gestalt';
 import { BOX_COLOR} from '../../constants'
 import ImageViewerBox from '../ImageViewer';
-
+import SatrCardProfile from '../StarCardProfile'
 import './index.scss';
 
 const imageColor = BOX_COLOR;
 let page_type = document.getElementsByTagName('meta')['page-type'].getAttribute('content');
+
+/**
+ * 无状态函数组件
+ * 展示图片的来源
+ * @param {*} props 
+ */
+function PinItemOrigin(props) { 
+    return (
+        <Box paddingX={3} paddingY={1} position='absolute' bottom={true} left={true} shape={'rounded'} color={'white'} marginLeft={3} marginBottom={3}>
+            <Link href={props.origin === '微博' ? props.origin_url : 'https://instagram.com/p/'+props.code}>
+                <Box alignItems="center" display="flex">
+                    <Box marginRight={1} padding={1}>
+                    <   Icon icon="arrow-up-right" accessibilityLabel="link" color="darkGray" inline={true}/>
+                    </Box>
+                    <Text align="center" bold color="darkGray">
+                        {props.origin === '微博' ? 'weibo.com' : 'instagram.com'}
+                    </Text>
+                </Box>
+            </Link>
+        </Box>
+    );
+}
 export default class Pin extends Component {
     constructor(props) {
         super(props);
@@ -20,6 +42,9 @@ export default class Pin extends Component {
             show_image: false,
             img_props: {}
         };
+        
+        const { domain, name, avatar, verified, id, description } = this.item
+        this.starProfile = { domain, name, avatar, verified, id, description};
         this.handleMouseEnter = this.handleMouseEnter.bind(this);
         this.handleMouseLeave = this.handleMouseLeave.bind(this);
         this.showImageViewer = this.showImageViewer.bind(this);
@@ -64,9 +89,12 @@ export default class Pin extends Component {
     handleMouseLeave(){
         this.setState({ hovered: false });
     }
-    // shouldComponentUpdate(nextProps, nextState, nextContext) {
-    //     return nextProps.data.id !== this.item.id;
-    // }
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        if (this.state.show_image !== nextState.show_image || this.state.hovered !== nextState.hovered) { 
+            return true;
+        }
+        return nextProps.data.id !== this.item.id;
+    }
 
     render() {
         return (
@@ -93,38 +121,19 @@ export default class Pin extends Component {
                                         this.item.pic_detail.url :this.item.display_url) :
                                         ('https://star-1256165736.picgz.myqcloud.com/'+this.item.cos_url+'!small')}
                                 >
-                                    <Box paddingX={3} paddingY={1} position='absolute' bottom={true} left={true} shape={'rounded'} color={'white'} marginLeft={3} marginBottom={3} display={this.state.hovered ? 'block' : 'none'}>
-                                        <Link href={this.item.origin === '微博' ? this.item.origin_url : 'https://instagram.com/p/'+this.item.code}>
-                                            <Box alignItems="center" display="flex">
-                                                <Box marginRight={1} padding={1}>
-                                                    <Icon icon="arrow-up-right" accessibilityLabel="link" color="darkGray" inline={true}/>
-                                                </Box>
-                                                <Text align="center" bold color="darkGray">
-                                                    {this.item.origin === '微博' ? 'weibo.com' : 'instagram.com'}
-                                                </Text>
-                                            </Box>
-                                        </Link>
-                                    </Box>
+                                    {
+                                        this.state.hovered ? <PinItemOrigin
+                                            origin={this.item.origin}
+                                            origin_url={this.item.origin_url}
+                                            code={this.item.code}
+                                        /> : null
+                                    }
                                 </Image>
                             </div>
                         </Box>
                         {
                             this.state.page_type && this.state.page_type ==='normal' ?
-                                <Box display="flex" direction="row" paddingY={2} marginTop={1} color={'white'} >
-                                    <Box column={2}>
-                                        <Link href={this.item.domain} target={'blank'}>
-                                            <Avatar name={this.item.name} src={this.item.avatar} verified={this.item.verified} />
-                                        </Link>
-                                    </Box>
-                                    <Box column={10} paddingX={2}>
-                                        <Link href={'https://starimg.cn/pin/'+this.item.id} target={'blank'} className={'PinLayer'}>
-                                            <Text color={'darkGray'} align={'left'} truncate size="xs">{this.item.description}</Text>
-                                        </Link>
-                                        <Text color={'gray'} align={'left'} truncate size="xs" >
-                                            <Link href={this.item.domain} target={'blank'}>{this.item.name}</Link>
-                                        </Text>
-                                    </Box>
-                                </Box>
+                                <SatrCardProfile {...this.starProfile}/>
                                 : null
                         }
                     </Card>

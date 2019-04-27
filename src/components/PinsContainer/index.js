@@ -66,7 +66,6 @@ export default class PinsContail extends Component {
         clearTimeout(this.timer);
     }
     render() {
-        console.log(this.state.data)
         return (
             <div className="pinsContailer">
                 <Box paddingX={this.winWidth > 768 ? 8 : 2} marginTop={3}>
