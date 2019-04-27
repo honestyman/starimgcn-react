@@ -28,7 +28,7 @@ export const searchStar = (url, keyWord) => {
         return new Promise((resolve, reject) => { 
             axios.get(url + '?key=' + keyWord)
                 .then(result => { 
-                    if (result.data.status === 200) {
+                    if (result.data) {
                         dispatch(SEARCH_FETCH_SUCCESS(result.data));
                         resolve(result);
                     } else { 

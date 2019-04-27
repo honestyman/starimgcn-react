@@ -1,11 +1,7 @@
-import { createStore, applyMiddleware,combineReducers } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import starReducer from './reducers/starReducer'
-import imageReducer from './reducers/imageReducer';
+import rootReducer from './reducers/'
 
-const reducer = combineReducers({
-    star: starReducer,
-    pins: imageReducer
-});
+
   
-export default createStore(reducer, applyMiddleware(thunk));
+export default createStore(rootReducer, applyMiddleware(thunk));

@@ -24,7 +24,6 @@ export default class SearchBox extends Component {
             this.requestStatus = 'requesting'
             store.dispatch(searchStar('/searchStar', key)).then(res => { 
                 console.log(res.data);
-                console.log(store.getState().star.stars)
             })
         }
     }

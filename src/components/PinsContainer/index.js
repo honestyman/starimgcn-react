@@ -49,7 +49,7 @@ export default class PinsContail extends Component {
             })
             store.dispatch(getRecentImages(this.url, this.state.current_page + 1))
                 .then((res) => {
-                    const state = store.getState().pins.home_pins;
+                    const state = store.getState().pins;
                     this.setState({
                         ...state,
                         show_spinner:false
