@@ -1,4 +1,10 @@
 .mobile_header{
+    .top_header{
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 671; 
+    }
     .bottom_header{
         position: fixed;
         bottom: 0;

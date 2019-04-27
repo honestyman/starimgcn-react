@@ -24,12 +24,12 @@ export default class MobileHeader extends Component {
                         <Box color="white" shape="rounded" paddingX={4} paddingY={2} display="flex" direction="row" alignItems="center">
                             <Box marginRight={1} padding={1} flex="grow">
                                 <Link href="/">
-                                   <Icon icon="pinterest" accessibilityLabel="Home" color="midnight" size="23" /> 
+                                   <Icon icon="apps" accessibilityLabel="Home" color="midnight" size="23" /> 
                                 </Link>
                             </Box>
                             <Box marginRight={1} padding={1} flex="grow">
                                 <Link href="/search">
-                                    <Icon icon="search" accessibilityLabel="Search" color="midnight" size="23" />
+                                    <Icon icon="compass" accessibilityLabel="Search" color="midnight" size="23" />
                                 </Link>
                             </Box>
                             <Box marginRight={1} padding={1} flex="grow">

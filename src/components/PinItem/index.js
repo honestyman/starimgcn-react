@@ -101,7 +101,7 @@ export default class Pin extends Component {
     render() {
         return (
             <div className='pinItem' key={this.item.id}>
-                <Box paddingX={2} paddingY={2}  shape={'rounded'} color={'white'}>
+                <Box paddingX={2} paddingY={1}  shape={'rounded'} color={'white'}>
                     <Card
                         paddingX={3}
                         paddingY={2}
