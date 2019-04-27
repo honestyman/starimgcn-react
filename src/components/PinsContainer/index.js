@@ -43,23 +43,23 @@ export default class PinsContail extends Component {
     }
     // get pins
     updatePins() { 
-           this.setState({
-                isFetching: true,
-                show_spinner: true
-            })
-            store.dispatch(getRecentImages(this.url, this.state.current_page + 1))
-                .then((res) => {
-                    const state = store.getState().pins;
-                    this.setState({
-                        ...state,
-                        show_spinner:false
-                    })
-                }).catch(error => { 
-                    console.log(error);
-                    this.setState({
-                        show_spinner:false
-                    })
+        this.setState({
+            isFetching: true,
+            show_spinner: true
+        })
+        store.dispatch(getRecentImages(this.url, this.state.current_page + 1))
+            .then((res) => {
+                const state = store.getState().pins;
+                this.setState({
+                    ...state,
+                    show_spinner:false
                 })
+            }).catch(error => { 
+                console.log(error);
+                this.setState({
+                    show_spinner:false
+                })
+            })
     }
     componentWillUnmount() { 
         clearTimeout(this.timer);
