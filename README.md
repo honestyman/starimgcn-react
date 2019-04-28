@@ -45,8 +45,7 @@ webpack 的 config 文件，在 `config` 目录下。
 
 ## 代理
 
-1. 确保你自己已经使用 npm run eject 命令，这个是生成本地webpack配置文件
-2. package.json中配置如下代码
+package.json中配置如下代码
 
 ```js
  "proxy": "https://api.starimg.cn"

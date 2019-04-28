@@ -24,7 +24,6 @@ export default class Star extends Component {
     }
 
     componentDidMount() { 
-        console.log(this.state.domain);
         store.dispatch(getStarDetail('/star/' + this.state.domain)).then(res => { 
             if (res.action_type === STAR_FETCH_SUCCESS) { 
                 const { star,ins_count,wb_count } = store.getState().star;
