@@ -3,7 +3,6 @@ import { STAR_FETCH_REQUEST,STAR_FETCH_SUCCESS,STAR_FETCH_FAIL} from '../actionT
 
 // initial state
 const initState = {
-    search_value: '',
     isFetching: false,
     star: {  }
 }
@@ -20,8 +19,6 @@ export default function (state = initState, action) {
         }
         case STAR_FETCH_SUCCESS: { 
             console.log('request-success--')
-            console.log(state);
-            console.log(action.result)
             return {
                 ...state,
                 isFetching: false,

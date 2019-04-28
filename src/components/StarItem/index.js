@@ -23,13 +23,13 @@ export default class StarItem extends Component {
                     >
                         <Box display="flex" direction="row" paddingY={2} marginTop={1} color={'white'} alignItems="center">
                             <Box column={2}>
-                                <Link href={this.props.data.domain} target={'blank'}>
+                                <Link href={this.props.data.domain} target={'self'}>
                                     <Avatar name={this.props.data.name} src={this.props.data.avatar} verified={this.props.data.verified} />
                                 </Link>
                             </Box>
                             <Box column={10} paddingX={2}>
                                 <Text color={'gray'} align={'left'} truncate size="xs" >
-                                    <Link href={this.props.data.domain} target={'blank'}>{this.props.data.name}</Link>
+                                    <Link href={this.props.data.domain} target={'self'}>{this.props.data.name}</Link>
                                 </Text>
 
                                 <Box color="white" paddingY={2} alignSelf={'center'}>
