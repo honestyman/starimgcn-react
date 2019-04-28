@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as util from '../utils/window_util'
+import * as util from '../utils/star_util'
 
 import { STARS_FETCH_FAIL, STARS_FETCH_SUCCESS, STARS_FETCH_REQUEST } from '../actionTypes/starsActionTypes'
 

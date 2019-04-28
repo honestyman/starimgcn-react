@@ -134,7 +134,8 @@ export default class Pin extends Component {
                                         this.item.pic_detail.url :this.item.display_url) :
                                         ('https://star-1256165736.picgz.myqcloud.com/'+this.item.cos_url+'!small')}
                                 >
-                                    {this.state.hovered ? <PinItemOrigin
+                                    {this.state.hovered ?
+                                        <PinItemOrigin
                                             origin={this.item.origin}
                                             origin_url={this.item.origin_url}
                                             code={this.item.code}
@@ -144,8 +145,8 @@ export default class Pin extends Component {
                             </div>
                         </Box>
                         {this.state.page_type && this.state.page_type ==='normal' ?
-                                <SatrCardProfile {...this.starProfile}/>
-                                : null
+                            <SatrCardProfile {...this.starProfile}/>
+                            : null
                         }
                     </Card>
                 </Box>

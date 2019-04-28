@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as util from '../utils/window_util'
+import * as util from '../utils/star_util'
 
 import { PINS_FETCH_FAIL, PINS_FETCH_SUCCESS, PINS_FETCH_REQUEST } from '../actionTypes/pinsActionTypes'
 
