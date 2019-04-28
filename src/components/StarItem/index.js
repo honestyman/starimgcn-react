@@ -6,7 +6,13 @@ import wb from '../../assets/images/weibo.svg'
 import ins from '../../assets/images/instagram.svg'
 import fb from '../../assets/images/facebook.svg'
 export default class StarItem extends Component {
-
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.data.id !== this.props.data.id) { 
+            return true;
+        }
+        return false;
+    }
+    
     render() {
         return (
             <div className={'starItem'} key={this.props.data.id}>
