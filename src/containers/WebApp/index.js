@@ -2,7 +2,7 @@ import React, { Component} from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import AsyncComponent from '../../components/AsyncComponent';
-
+import store from '../../store';
 
 import Header from '../../layouts/Header/'
 import StarToast from '../../components/Toast'
@@ -19,13 +19,19 @@ export default class WebApp extends Component {
     }
     
     componentDidMount() {
-        // let that = this;
-        // store.subscribe(() => { 
-        //     const _state = store.getState(); 
-        //     that.setState({
-        //         show_toast: _state.common.show
-        //     })
-        // })
+        let that = this;
+        this.unsubscribeHandler = store.subscribe(() => { 
+            const _state = store.getState(); 
+            that.setState({
+                show_toast: _state.common.show
+            })
+        })
+    }
+
+    componentWillUnmount() { 
+        if (this.unsubscribeHandler) { 
+            this.unsubscribeHandler();
+        }
     }
     
     render() { 
@@ -33,10 +39,6 @@ export default class WebApp extends Component {
             <Router>
                 <div className="webapp">
                     <Header />
-                    {/* <div className="link-list clear">
-                        <NavLink to="/" replace>Home</NavLink>
-                     </div> */}
-                    {/* router */}
                     <Switch>
                         <Route exact path="/" component={AsyncPinsContainer} />
                         <Route exact path="/explore" component={AsyncStarListContainer} />
