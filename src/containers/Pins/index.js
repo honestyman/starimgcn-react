@@ -11,7 +11,6 @@ import './index.scss';
 export default class PinsContail extends Component {
     constructor(props) {
         super(props);
-        this.timer = null;
         this.url = '/getRecentImages';
         this.winWidth = document.documentElement.clientWidth;
         this.state = {
@@ -48,6 +47,9 @@ export default class PinsContail extends Component {
             isFetching: true,
             show_spinner: true,
         })
+        if (!store) { 
+            return false;
+        }
         store.dispatch(getRecentImages(this.url, this.state.current_page + 1))
             .then((res) => {
                 const state = store.getState().pins;
@@ -63,7 +65,7 @@ export default class PinsContail extends Component {
             })
     }
     componentWillUnmount() { 
-        clearTimeout(this.timer);
+
     }
     render() {
         return (
