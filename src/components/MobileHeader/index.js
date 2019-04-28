@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Sticky, Box, Divider, Text, Icon, Link} from 'gestalt'
+import { Sticky, Box, Divider, Text, Icon} from 'gestalt'
+import { NavLink } from 'react-router-dom'
+
 import './index.scss'
 export default class MobileHeader extends Component { 
 
@@ -23,24 +25,24 @@ export default class MobileHeader extends Component {
                     <Sticky bottom={0} dangerouslySetZIndex={{ __zIndex: 671 }}>
                         <Box color="white" shape="rounded" paddingX={4} paddingY={2} display="flex" direction="row" alignItems="center">
                             <Box marginRight={1} padding={1} flex="grow">
-                                <Link href="/">
+                                <NavLink to="/" replace>
                                    <Icon icon="apps" accessibilityLabel="Home" color="midnight" size="23" /> 
-                                </Link>
+                                </NavLink>
                             </Box>
                             <Box marginRight={1} padding={1} flex="grow">
-                                <Link href="/search">
+                                <NavLink to="/explore" activeClassName="selected" replace>
                                     <Icon icon="compass" accessibilityLabel="Search" color="midnight" size="23" />
-                                </Link>
+                                </NavLink>
                             </Box>
                             <Box marginRight={1} padding={1} flex="grow">
-                                <Link href="/collect">
+                                <NavLink to="/collect" activeClassName="selected">
                                     <Icon icon="heart" accessibilityLabel="Collect" color="midnight" size="23" />
-                                </Link>
+                                </NavLink>
                             </Box>
                             <Box marginRight={1} padding={1} flex="grow">
-                                <Link href="/user">
+                                <NavLink to="/user" activeClassName="selected">
                                     <Icon icon="person" accessibilityLabel="Person" color="midnight" size="23" />
-                                </Link>
+                                </NavLink>
                             </Box>
                         </Box>
                     </Sticky>

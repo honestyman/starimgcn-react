@@ -1,7 +1,10 @@
 import React,{Component} from "react";
-import { Card,Box,Avatar,Link,Text} from 'gestalt';
+import { Card,Box,Avatar,Link,Text,Mask} from 'gestalt';
 // import FontAwesomeIcon from "react-fontawesome";
-
+import './index.scss';
+import wb from '../../assets/images/weibo.svg'
+import ins from '../../assets/images/instagram.svg'
+import fb from '../../assets/images/facebook.svg'
 export default class StarItem extends Component {
 
     render() {
@@ -12,7 +15,7 @@ export default class StarItem extends Component {
                         paddingX={3}
                         paddingY={2}
                     >
-                        <Box display="flex" direction="row" paddingY={2} marginTop={1} color={'white'} >
+                        <Box display="flex" direction="row" paddingY={2} marginTop={1} color={'white'} alignItems="center">
                             <Box column={2}>
                                 <Link href={this.props.data.domain} target={'blank'}>
                                     <Avatar name={this.props.data.name} src={this.props.data.avatar} verified={this.props.data.verified} />
@@ -26,32 +29,35 @@ export default class StarItem extends Component {
                                 <Box color="white" paddingY={2} alignSelf={'center'}>
                                     <Box width={24} display={(this.props.data.wb_domain || this.props.data.wb_id) ? 'inlineBlock' : 'none'}>
                                         <Link href={'https://weibo.com/'+(this.props.data.wb_domain ? this.props.data.wb_domain : 'u/'+this.props.data.wb_id)} target={'blank'}>
-                                            {/* <FontAwesomeIcon
-                                                className={'f-brand'}
-                                                name={'weibo'}
-                                                size={'2x'}
-                                            /> */}
-                                            <Avatar name={'Weibo'} />
+                                            <Mask shape="circle">
+                                                <img
+                                                    alt={'https://weibo.com/'+(this.props.data.wb_domain ? this.props.data.wb_domain : 'u/'+this.props.data.wb_id)}
+                                                    src={wb}
+                                                    style={{ maxWidth: '100%', display: 'block' }}
+                                                />
+                                            </Mask>
                                         </Link>
                                     </Box>
                                     <Box width={24} display={this.props.data.ins_name? 'inlineBlock' : 'none'} marginLeft={2}>
                                         <Link href={'https://instagram.com/'+(this.props.data.ins_name )} target={'blank'}>
-                                            <Avatar name={'Instagram'} />
-                                            {/* <FontAwesomeIcon
-                                                className={'f-brand'}
-                                                name={'instagram'}
-                                                size={'2x'}
-                                            /> */}
+                                            <Mask shape="circle">
+                                                <img
+                                                    alt={'https://instagram.com/'+(this.props.data.ins_name )}
+                                                    src={ins}
+                                                    style={{ maxWidth: '100%', display: 'block' }}
+                                                />
+                                            </Mask>
                                         </Link>
                                     </Box>
                                     <Box width={24} display={this.props.data.fb_domain? 'inlineBlock' : 'none'} marginLeft={2}>
                                         <Link href={'https://facebook.com/'+(this.props.data.fb_domain )} target={'blank'}>
-                                            <Avatar name={'Instagram'} />
-                                            {/* <FontAwesomeIcon
-                                                className={'f-brand'}
-                                                name={'facebook'}
-                                                size={'2x'}
-                                            /> */}
+                                            <Mask shape="circle">
+                                                <img
+                                                    alt={'https://facebook.com/'+(this.props.data.fb_domain )}
+                                                    src={fb}
+                                                    style={{ maxWidth: '100%', display: 'block' }}
+                                                />
+                                            </Mask>
                                         </Link>
                                     </Box>
                                 </Box>

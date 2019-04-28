@@ -66,10 +66,10 @@ export default class StarListContainer extends Component {
     }
     render() {
         return (
-            <div className='pinsContainer'>
-                <Box  display='flex' justifyContent='center'>
+            <div className='starsContainer'>
+                <Box display='flex' justifyContent='center'>
                     <Box column={this.winWidth > 768 ? 8 : 12} paddingX={this.winWidth > 768 ? 8 : 2} marginTop={3} alignContent='center'>
-                        <Box paddingY={2}>
+                        <Box paddingY={2} paddingX={2} marginTop={this.winWidth>768 ? 0 : 10 }>
                            <Text size='md'>收录明星列表</Text> 
                          </Box>
                         <Divider />
@@ -77,7 +77,7 @@ export default class StarListContainer extends Component {
                             comp={StarItem}
                             items={this.state.data}
                             loadItems={(event)=>{}}
-                            minCols={2}
+                            minCols={1}
                             gutterWidth = {5}
                             flexible = {true}
                         />

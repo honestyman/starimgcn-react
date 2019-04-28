@@ -1,10 +1,16 @@
 /* header */
-.header{
+.web_header{
 	a,a:hover{
 		text-decoration: none;
 	}
 	a>button{
 		padding: 10px 16px;
 		border-radius: 20px;
+	}
+	a.selected button{
+		background-color: #f1f1f1;
+	}
+	a>button:focus{
+		box-shadow: none;
 	}
 }
