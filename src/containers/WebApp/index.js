@@ -7,8 +7,8 @@ import store from '../../store';
 import Header from '../../layouts/Header/'
 import StarToast from '../../components/Toast'
 
-const AsyncPinsContainer = AsyncComponent(() => import('../../components/PinsContainer'))
-const AsyncStarListContainer = AsyncComponent(()=>import('../../components/StarListContainer'))
+const AsyncPinsContainer = AsyncComponent(() => import('../PinsContainer'))
+const AsyncStarListContainer = AsyncComponent(() => import('../StarListContainer'))
 export default class WebApp extends Component { 
     constructor(props, context) {
         super(props, context)
@@ -42,6 +42,7 @@ export default class WebApp extends Component {
                     <Switch>
                         <Route exact path="/" component={AsyncPinsContainer} />
                         <Route exact path="/explore" component={AsyncStarListContainer} />
+
                     </Switch>
                     {/* toast */}
                     {this.state.show_toast ?

@@ -1,7 +1,7 @@
 // import 'babel-polyfill';
 import React, { Component } from 'react';
 import { Masonry,Box,Spinner} from 'gestalt';
-import Pin from '../PinItem';
+import Pin from '../../components/PinItem';
 import store from '../../store';
 import { getRecentImages } from '../../actions/pinsActions';
 import * as until from '../../utils/window_util'

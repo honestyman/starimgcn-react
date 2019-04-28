@@ -1,7 +1,7 @@
 // import 'babel-polyfill';
 import React, { Component } from 'react';
 import { Masonry,Box,Spinner,Text,Divider} from 'gestalt';
-import StarItem from '../StarItem';
+import StarItem from '../../components/StarItem';
 import store from '../../store';
 import { getStarLists } from '../../actions/starsActions';
 import * as until from '../../utils/window_util'
