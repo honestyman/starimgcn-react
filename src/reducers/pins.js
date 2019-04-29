@@ -24,7 +24,7 @@ export default function (state = initState, action) {
                 current_page: result.current_page,
                 last_page: result.last_page,
                 total: result.total,
-                data: state.data.length>0 ? state.data.concat(result.data): result.data,
+                data: result.current_page>1 ? state.data.concat(result.data): result.data,
                 isFetching: false,
                 lastUpdated: new Date().getTime()
     

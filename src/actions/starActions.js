@@ -9,8 +9,11 @@ const  actionCreator= (type,data) =>({
     lastUpdated: new Date().getTime(),
     result:data
 })
-
-export const getStarDetail = (url,) => {
+/**
+ * 获取 star 的详细信息
+ * @param {url} url 
+ */
+export const getStarDetail = (url) => {
     return (dispatch, getState) => {
         dispatch(actionCreator(STAR_FETCH_REQUEST));
         return new Promise((resolve, reject) => {
@@ -33,3 +36,4 @@ export const getStarDetail = (url,) => {
             }) 
         } ;
 } 
+

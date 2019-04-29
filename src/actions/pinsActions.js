@@ -10,15 +10,21 @@ const  actionCreator= (type,data) =>({
     pins:data
 })
 
-export const getRecentImages = (url, page) => {
+export const getRecentImages = (url, page,data) => {
     return (dispatch, getState) => {
         dispatch(actionCreator(PINS_FETCH_REQUEST));
         return new Promise((resolve, reject) => {
             let _url = util.replaceUrl(url);
-            axios.get(_url + '?page=' + page)
+            let params = {
+                page: page
+            }
+            if (data) {
+                Object.assign(params,data)
+            }
+            axios.get(_url, { params: params })
                 .then(result => { 
                     // console.log(result.data);
-                    if (result.data.total >0) {
+                    if (result.data.data) {
                         dispatch(actionCreator(PINS_FETCH_SUCCESS,result.data));
                         resolve(Object.assign(result, {action_type: PINS_FETCH_SUCCESS}));
                     } else { 

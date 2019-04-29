@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Box, Text, Flyout, Button, Divider, Column } from "gestalt";
-
+import './index.scss'
 export default class StarSort extends Component {
     constructor(props, context) {
         super(props, context);
@@ -20,6 +20,7 @@ export default class StarSort extends Component {
         this.props.hanleSortBy("like");
     }
     _handleClick() {
+        console.log(this.showLayout)
         this.props.toggleLayout(true);
     }
     _handleDismiss() {

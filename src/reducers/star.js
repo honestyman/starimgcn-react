@@ -4,7 +4,9 @@ import { STAR_FETCH_REQUEST,STAR_FETCH_SUCCESS,STAR_FETCH_FAIL} from '../actionT
 // initial state
 const initState = {
     isFetching: false,
-    star: {  }
+    star: {},
+    ins_count: 0,
+    wb_count: 0
 }
 
 export default function (state = initState, action) {
@@ -22,6 +24,8 @@ export default function (state = initState, action) {
             return {
                 ...state,
                 isFetching: false,
+                ins_count: action.result.ins_count,
+                wb_count: action.result.wb_count,
                 star: action.result.star
             }
         }
