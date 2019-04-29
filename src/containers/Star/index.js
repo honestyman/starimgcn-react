@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import StarHeader from "../../components/StarHeader";
-import { Box } from "gestalt";
 import { getStarDetail } from "../../actions/starActions";
 import { STAR_FETCH_SUCCESS } from "../../actionTypes/starActionTypes";
 import store from "../../store";
@@ -73,19 +72,19 @@ export default class Star extends Component {
      * @param {time_desc,timeasc,like_desc,like_asc} sort
      */
     hanleSortBy(type, sort) {
-        console.log(type)
-        if (type === 'time') {
-            this.setState((prevState) => ({
-                sort_by: 'time',
-                time_sort: prevState.time_sort === 'desc' ? 'asc' : 'desc',
+        console.log(type);
+        if (type === "time") {
+            this.setState(prevState => ({
+                sort_by: "time",
+                time_sort: prevState.time_sort === "desc" ? "asc" : "desc",
                 show_layout: false
-            }))
-        } else if (type==='like') { 
-            this.setState((prevState) => ({
-                sort_by: 'like',
-                like_sort: prevState.like_sort === 'desc' ? 'asc' : 'desc',
+            }));
+        } else if (type === "like") {
+            this.setState(prevState => ({
+                sort_by: "like",
+                like_sort: prevState.like_sort === "desc" ? "asc" : "desc",
                 show_layout: false
-            }))
+            }));
         }
     }
 
@@ -116,38 +115,29 @@ export default class Star extends Component {
                         clientWidth={this.clientWidth}
                     />
                 ) : null}
-                <Box
-                    display="flex"
-                    direction="row"
-                    paddingX={this.props.clientWidth > 768 ? 8 : 0}
-                    justifyContent="center"
-                >
-                    {/* tabs */}
-                    <StarTabs
-                        clientWidth={this.clientWidth}
-                        itemIndex={this.state.itemIndex}
-                        handleItemChange={this.handleItemChange}
-                    />
-                </Box>
-                <Box
-                    display="flex"
-                    direction="row"
-                    paddingX={this.props.clientWidth > 768 ? 8 : 0}
-                    justifyContent="center"
-                >
-                    {/* total and sortBy */}
-                    <StarSort
-                        clientWidth={this.clientWidth}
-                        time_sort={this.state.time_sort}
-                        like_sort={this.state.like_sort}
-                        sort_by={this.state.sort_by}
-                        type_name={this.state.type_name}
-                        showLayout={this.state.show_layout}
-                        hanleSortBy={this.hanleSortBy}
-                        toggleLayout={this.toggleLayout}
-                        total={this.state.itemIndex > 2 ? 0 : (this.state.itemIndex<1 ? this.state.wb_count : this.state.ins_count)}
-                    />
-                </Box>
+                {/* tabs */}
+                <StarTabs
+                    clientWidth={this.clientWidth}
+                    itemIndex={this.state.itemIndex}
+                    handleItemChange={this.handleItemChange}
+                />
+                {/* total and sortBy */}
+                <StarSort
+                    clientWidth={this.clientWidth}
+                    time_sort={this.state.time_sort}
+                    like_sort={this.state.like_sort}
+                    sort_by={this.state.sort_by}
+                    type_name={this.state.type_name}
+                    showLayout={this.state.show_layout}
+                    hanleSortBy={this.hanleSortBy}
+                    toggleLayout={this.toggleLayout}
+                    total={ this.state.itemIndex > 2
+                            ? 0
+                            : this.state.itemIndex < 1
+                            ? this.state.wb_count
+                            : this.state.ins_count
+                    }
+                />
             </div>
         );
     }

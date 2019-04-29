@@ -21,16 +21,23 @@ export default class StarTabs extends Component {
     render() {
         const items = ["微博", "Ins", "其他"];
         return (
-            <Column span={this.props.clientWidth > 768 ? 9 : 12}>
-                {/* tabs */}
-                <Box color="white" paddingY={2} wrap paddingX={5}>
-                    <SegmentedControl
-                        items={items}
-                        selectedItemIndex={this.props.itemIndex}
-                        onChange={this.handleItemChange}
-                    />
-                </Box>
-            </Column>
+            <Box
+                display="flex"
+                direction="row"
+                paddingX={this.props.clientWidth > 768 ? 8 : 0}
+                justifyContent="center"
+            >
+                <Column span={this.props.clientWidth > 768 ? 9 : 12}>
+                    {/* tabs */}
+                    <Box color="white" paddingY={2} wrap paddingX={5}>
+                        <SegmentedControl
+                            items={items}
+                            selectedItemIndex={this.props.itemIndex}
+                            onChange={this.handleItemChange}
+                        />
+                    </Box>
+                </Column>
+            </Box>
         );
     }
 }
