@@ -29,7 +29,8 @@ class ImageViewerBox extends Component{
             <div className='image-viewer-box'>
                <div className='image-viewer' onClick={this.props.onClose}>
                    <div className='image-box'>
-                       <img src={this.state.img_url} alt="" className="img" style={style}/>
+                        <img src={this.state.img_url} alt="" className="img" style={style} />
+                        {this.props.children}
                    </div>
                </div>
             </div>,

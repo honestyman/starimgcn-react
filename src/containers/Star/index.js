@@ -256,7 +256,7 @@ export default class Star extends Component {
                 />
                 {/* pins */}
                 <div className="star_pinsContainer">
-                    <Box paddingX={this.winWidth > 768 ? 8 : 2} marginTop={3}>
+                    <Box paddingX={this.clientWidth > 768 ? 8 : 2} marginTop={3}>
                         <Masonry
                             comp={Pin}
                             items={this.state.data}

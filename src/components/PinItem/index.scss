@@ -30,3 +30,28 @@
     overflow:'hidden';
     width:'100%';
   }
+  .web_profile{
+    display: flex;
+    flex: 1;
+  }
+  .mobile_profile{
+    width: 100%;
+    & a{
+      padding: 5px
+    }
+  }
+  .mobile_description{
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    line-height: 18px;
+  }
+  @media(max-width:768px){
+    .mobile_card_profile{
+      position: absolute;
+      top: 0;
+      width: 100%;
+      color: #fff;
+      z-index: 100001;
+    }
+  }

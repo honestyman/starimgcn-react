@@ -70,7 +70,7 @@ export default class PinsContail extends Component {
     render() {
         return (
             <div className="pinsContainer">
-                <Box paddingX={this.winWidth > 768 ? 8 : 2} marginTop={3}>
+                <Box paddingX={this.winWidth > 768 ? 8 : 2} marginTop={2}>
                     <Masonry
                         comp={Pin}
                         items={this.state.data}
