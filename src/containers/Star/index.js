@@ -5,7 +5,7 @@ import Pin from "../../components/PinItem";
 import { getStarDetail } from "../../actions/starActions";
 import { STAR_FETCH_SUCCESS } from "../../actionTypes/starActionTypes";
 import store from "../../store";
-import { getRecentImages as getStarImages } from "../../actions/pinsActions";
+import { getPins } from "../../actions/pinsActions";
 import * as until from "../../utils/star_util";
 
 import StarTabs from "../../components/StarTabs";
@@ -14,14 +14,15 @@ import "./index.scss";
 export default class Star extends Component {
     constructor(props, context) {
         super(props, context);
-        const { domain } = props.match.params;
         this.clientWidth = window.innerWidth;
+        const { domain} = props.match.params
         this.pre_index = 1;
         this.isFetching = false;
         this.current_page = 0;
         this.last_page = 2;
+        this.domain = domain;
+        console.log(this.domain,domain)
         this.state = {
-            domain: domain,
             star: null,
             ins_count: 0,
             wb_count: 0,
@@ -118,7 +119,7 @@ export default class Star extends Component {
     getStarDetail() {
         return new Promise((resolve, reject) => {
             store
-                .dispatch(getStarDetail("/star/" + this.state.domain))
+                .dispatch(getStarDetail("/star/" + this.domain))
                 .then(res => {
                     if (res.action_type === STAR_FETCH_SUCCESS) {
                         const {
@@ -145,11 +146,11 @@ export default class Star extends Component {
 
     /**
      * 获取 star 的 pins
+     * url '/starImages/${name}'
      * @param type
      * @param sort
      */
     getStarPins(type, sort, origin) {
-        // url '/starImages/${name}'
         const item_idex = this.state.itemIndex;
         let _origin = "instagram";
         if (origin) {
@@ -161,7 +162,8 @@ export default class Star extends Component {
         let data = {
             origin: _origin,
             sort: sort,
-            type: type
+            type: type,
+            domain: this.domain
         };
         let page = this.current_page + 1;
         if (this.last_page < this.current_page) {
@@ -172,9 +174,7 @@ export default class Star extends Component {
         })
         this.isFetching = true;
         store
-            .dispatch(
-                getStarImages("/starImages/" + this.state.domain, page, data)
-            )
+            .dispatch( getPins("star", page, data))
             .then(res => {
                 const state = store.getState().pins;
                 this.setState({
@@ -196,22 +196,21 @@ export default class Star extends Component {
      * 挂载成功后
      */
     componentDidMount() {
+        let _this = this;
         this.getStarDetail().then(res => {
             if (res.status === 200) {
                 // 加载 pins
-                this.getStarPins("time", "desc", "instagram");
+                _this.getStarPins("time", "desc", "instagram");
             } else {
                 // try again
-                this.getStarDetail();
+                _this.getStarDetail();
             }
         });
-        let _this = this;
+        
         window.addEventListener("scroll", () => {
             _this.handleScroll();
         });
     }
-
-    componentWillUnmount() { }
     
     render() {
         return (

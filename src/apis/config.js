@@ -20,14 +20,9 @@ let BASE_URL
 if (process.env.NODE_ENV === 'development') {
   BASE_URL = 'http://127.0.0.1:3000'
 } else {
-  BASE_URL = API_URL_PREFIX
+  BASE_URL = 'https://api.starimg.cn'
 }
 
-let webapi = decodeURIComponent(getUrlParameter()['webapi'])
-if (webapi && webapi !== 'undefined' && webapi !== null && webapi !== undefined) {
-  console.log('set new api from url', webapi)
-  BASE_URL = webapi
-}
 
 // POST请求配置文件
 export function commonRequest (url, method, params, data) {
@@ -88,7 +83,8 @@ export function commonRequest (url, method, params, data) {
     },
     // `maxContentLength` 定义允许的响应内容的最大尺寸
     maxContentLength: 2000,
-    // `validateStatus` 定义对于给定的HTTP 响应状态码是 resolve 或 reject  promise 。如果 `validateStatus` 返回 `true` (或者设置为 `null` 或 `undefined`)，promise 将被 resolve; 否则，promise 将被 rejecte
+    // `validateStatus` 定义对于给定的HTTP 响应状态码是 resolve 或 reject  promise 。
+    // 如果 `validateStatus` 返回`true`(或者设置为`null` 或`undefined`) ，promise 将被 resolve; 否则，promise 将被 rejecte
     validateStatus: function (status) {
       return status >= 200 && status < 300 // 默认的
     },

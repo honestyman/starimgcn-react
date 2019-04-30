@@ -3,7 +3,6 @@ import * as util from '../utils/star_util'
 
 import { STAR_FETCH_FAIL, STAR_FETCH_SUCCESS, STAR_FETCH_REQUEST } from '../actionTypes/starActionTypes'
 
-
 const  actionCreator= (type,data) =>({
     type: type,
     lastUpdated: new Date().getTime(),

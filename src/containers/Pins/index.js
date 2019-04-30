@@ -1,17 +1,14 @@
-// import 'babel-polyfill';
 import React, { Component } from 'react';
 import { Masonry,Box,Spinner} from 'gestalt';
 import Pin from '../../components/PinItem';
 import store from '../../store';
-import { getRecentImages } from '../../actions/pinsActions';
+import { getPins } from '../../actions/pinsActions';
 import * as until from '../../utils/star_util'
 import './index.scss';
-// import { HOME_FETCH_FAIL, HOME_FETCH_SUCCESS} from '../../actionTypes/imageActionTypes'
-
+import { PINS_FETCH_FAIL, PINS_FETCH_SUCCESS } from '../../actionTypes/pinsActionTypes'
 export default class PinsContail extends Component {
     constructor(props) {
         super(props);
-        this.url = '/getRecentImages';
         this.winWidth = document.documentElement.clientWidth;
         this.state = {
             data: [],
@@ -50,13 +47,19 @@ export default class PinsContail extends Component {
         if (!store) { 
             return false;
         }
-        store.dispatch(getRecentImages(this.url, this.state.current_page + 1))
+        store.dispatch(
+            getPins('home', this.state.current_page + 1))
             .then((res) => {
-                const state = store.getState().pins;
-                this.setState({
-                    ...state,
-                    show_spinner:false
-                })
+                if (res.action_type === PINS_FETCH_SUCCESS) {
+                    const state = store.getState().pins;
+                    this.setState({
+                        ...state,
+                        show_spinner: false
+                    })
+                } else if (res.action_type === PINS_FETCH_FAIL) { 
+                    console.log(res.message)
+                }
+              
             }).catch(error => { 
                 console.log(error);
                 this.setState({
@@ -65,7 +68,7 @@ export default class PinsContail extends Component {
             })
     }
     componentWillUnmount() { 
-
+        window.removeEventListener('scroll', () => { });
     }
     render() {
         return (
