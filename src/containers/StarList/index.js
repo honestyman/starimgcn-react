@@ -5,12 +5,13 @@ import StarItem from '../../components/StarItem';
 import store from '../../store';
 import { getStarLists } from '../../actions/starsActions';
 import * as until from '../../utils/star_util'
-// import { HOME_FETCH_FAIL, HOME_FETCH_SUCCESS} from '../../actionTypes/imageActionTypes'
+import { STARS_FETCH_FAIL, STARS_FETCH_SUCCESS } from '../../actionTypes/starsActionTypes'
 
 export default class StarListContainer extends Component {
     constructor(props) {
         super(props);
         this.winWidth = document.documentElement.clientWidth;
+        this.timer = null;
         this.state = {
             data: [],
             last_page:2,
@@ -58,24 +59,48 @@ export default class StarListContainer extends Component {
             isFetching: true,
             show_spinner: true,
         })
-        store.dispatch(getStarLists('/getStars', this.state.current_page + 1))
+        store.dispatch(getStarLists(this.state.current_page + 1))
             .then((res) => {
-                const state = store.getState().stars;
-                this.setState({
-                    ...state,
-                    show_spinner:false
-                }, () => { 
-                    this.isCanScroll()
-                })
+                if (res.action_type === STARS_FETCH_SUCCESS) {
+                    const state = store.getState().stars;
+                    if (this.state.data.length === state.data.length) { 
+                        // 加载完毕提醒
+                        until.showToast('没有更多了哦！')
+                        this.timer = setTimeout(() => { 
+                            until.closeToast()
+                        },2000)
+                    }
+                    this.setState({
+                        ...state,
+                        show_spinner: false
+                    }, () => {
+                        this.isCanScroll()
+                    })
+                } else if(res.action_type === STARS_FETCH_FAIL){ 
+                    this.setState({
+                        show_spinner: false
+                    })
+                    // 加载错误提醒
+                    until.showToast('异步加载数据出错。。。')
+                    this.timer = setTimeout(() => { 
+                        until.closeToast()
+                    },2000)
+                }
+             
             }).catch(error => { 
                 console.log(error);
                 this.setState({
-                    show_spinner:false
-                })
+                    show_spinner: false
+                });
+                 // 加载错误提醒
+                 until.showToast('异步加载数据出错。。。')
+                 this.timer = setTimeout(() => { 
+                     until.closeToast()
+                 },2000)
             })
     }
     componentWillUnmount() { 
-    
+        clearTimeout(this.timer)
     }
     render() {
         return (

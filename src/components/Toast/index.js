@@ -36,7 +36,7 @@ export default class StarToast extends Component{
                       position='fixed'
                   >
                     {this.state.showTaost?(
-                        <Toast color="orange" text={this.state.text ? this.state.text : '咦，好像哪里出错了！'}></Toast>
+                        <Toast color="orange" text={this.state.text || '咦，好像哪里出错了！'}></Toast>
                     ) : null}
                 </Box>
             </div>,

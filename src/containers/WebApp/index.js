@@ -17,7 +17,7 @@ export default class WebApp extends Component {
         super(props, context)
         this.state = {
             show_toast: false,
-            toast_text: ''
+            text: ''
         }
     }
     
@@ -26,7 +26,8 @@ export default class WebApp extends Component {
         this.unsubscribeHandler = store.subscribe(() => { 
             const _state = store.getState(); 
             that.setState({
-                show_toast: _state.common.show
+                show_toast: _state.common.toast.show,
+                text: _state.common.toast.text || ''
             })
         })
     }
@@ -53,7 +54,7 @@ export default class WebApp extends Component {
                     {this.state.show_toast ?
                         <StarToast
                             showTaost={this.state.show_toast}
-                            text={this.state.toast_text}
+                            text={this.state.text}
                         /> : null
                     }
                 </div>

@@ -1,3 +1,7 @@
+import { SHOW_TOAST, CLOSE_TOAST } from "../actionTypes/commonActionTypes";
+import { TOGGLE_TOAST } from "../actions/commonActions";
+import store from "../store";
+
 //滚动条在Y轴上的滚动距离
 export function getScrollTop(){
     let scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
@@ -33,10 +37,10 @@ export function getWindowHeight(){
     return windowHeight;
 }
 
-export function replaceUrl(url) {
-    if(window.location.host.indexOf('starimg.cn') !==-1){
-        return 'https://api.starimg.cn'+url;
-    }else{
-        return url;
-    }
+export function showToast(text) {
+    store.dispatch(TOGGLE_TOAST(SHOW_TOAST,text))
+}
+
+export function closeToast() { 
+    store.dispatch(TOGGLE_TOAST(CLOSE_TOAST))
 }
