@@ -57,7 +57,7 @@ export function commonRequest(url, method, params, data) {
         return data
       }
     }],
-    headers: {'Accept': 'application/json;charset=UTF-8', 'Content-Type': 'application/json', 'Token': token},
+    // headers: {'Accept': 'application/json;charset=UTF-8', 'Content-Type': 'application/json', 'Token': token},
     // `params` 是即将与请求一起发送的 URL 参数
     // 必须是一个无格式对象(plain object)或 URLSearchParams 对象
     params: Object.assign(getHeaders(), params),

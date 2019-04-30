@@ -28,14 +28,14 @@ function Request(url, method, data, errcb) {
  * 获取最新的首页图片列表信息
  */
 export const GET_RECENT_PINS = data =>
-    Request("/getRecentImages", "post", data, undefined);
+    Request("/getRecentImages", "get", data, undefined);
 
 /**
  * 获取明星的图片列表信息
  * @param {*} data
  */
 export const GET_STAR_PINS = data =>
-    Request("/starImages/" + data.domain, "post", data, undefined);
+    Request("/starImages/" + data.domain, "get", data, undefined);
 
 /**
  * 获取明星详情
@@ -43,17 +43,17 @@ export const GET_STAR_PINS = data =>
  */
 
 export const GET_STAR_DETAIL = data =>
-    Request("/star/" + data.domain, "post", data, undefined);
+    Request("/star/" + data.domain, "get", data, undefined);
 
 /**
  * 获取明星列表信息
  * @param {*} data
  */
 export const GET_STAR_LIST = data =>
-    Request("/getStars", "post", data, undefined);
+    Request("/getStars", "get", data, undefined);
 /**
  * 关键词搜索明星
  * @param key
  */
 export const SEARCH_STAR = data =>
-    Request("/searchStar", "post", data, undefined);
+    Request("/searchStar", "get", data, undefined);
