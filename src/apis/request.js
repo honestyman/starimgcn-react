@@ -1,13 +1,10 @@
 import axios from 'axios';
 import { commonRequest, INVALID_TOKEN } from './config'
-// import ErrorToast from '../components/Toast/errorToast'
+
 // POST/GET/PUT/DELETE 请求
-function Request (url, method, params, data, visible = true, errcb) {
-    if (visible) {
-      console.log('---加载中---')
-    }
+function Request (url, method, params, errcb) {
     return new Promise(function (resolve, reject) {
-      axios(commonRequest(url, method, params, data)).then((res) => {
+      axios(commonRequest(url, method, params)).then((res) => {
         if (res.data) {
           resolve(res.data)
         }else if (res.data.code === INVALID_TOKEN) {
@@ -21,14 +18,19 @@ function Request (url, method, params, data, visible = true, errcb) {
     })
 }
 
-// api 接口
+//------- api 接口 -------
 
 /**
- * 获取最新的 图片
+ * 获取最新的首页图片列表信息
  */
-export const GET_RECENT_PINS = (data) => Request('/getRecentImages', 'get', data, undefined)
+export const GET_RECENT_PINS = (data) => Request('/getRecentImages', 'post', data, undefined)
  
-export const GET_STAR_PINS = (data) => Request('/starImages/'+data.domain,'get',data,undefined)
+/**
+ * 获取明星的图片列表信息
+ * @param {*} data 
+ */
+export const GET_STAR_PINS = (data) => Request('/starImages/' + data.domain, 'post', data, undefined)
+
 /**
  * 关键词搜索明星
  * @param key

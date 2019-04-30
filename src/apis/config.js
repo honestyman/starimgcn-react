@@ -18,14 +18,20 @@ if(getUrlParameter()['token']) {
 
 let BASE_URL
 if (process.env.NODE_ENV === 'development') {
+  // 测试 URL
   BASE_URL = 'http://127.0.0.1:3000'
 } else {
+  // 生产实际 URL
   BASE_URL = 'https://api.starimg.cn'
 }
 
 
 // POST请求配置文件
-export function commonRequest (url, method, params, data) {
+export function commonRequest(url, method, params, data) {
+  if (method !== 'get') {
+    data = Object.assign({}, params);
+    params = null;
+  }
   return {
     // `url` 是用于请求的服务器 URL
     url: url,
