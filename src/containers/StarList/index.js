@@ -26,9 +26,20 @@ export default class StarListContainer extends Component {
     componentDidMount() {
         this.updateStars();
         let _this = this;
+
         window.addEventListener('scroll', () => {
             _this.handleScroll();
         });
+
+    }
+    // 首次加载完内容检测是否达到滚动标准
+    // 没有的话就继续加载一次
+    isCanScroll() { 
+        let scrollHeight = until.getScrollHeight();
+        let windowHeight = until.getWindowHeight();
+        if (!(scrollHeight > windowHeight)) { 
+            this.updateStars()
+        }
     }
     // 距离底部30px时，加载更多内容
     handleScroll() {
@@ -53,6 +64,8 @@ export default class StarListContainer extends Component {
                 this.setState({
                     ...state,
                     show_spinner:false
+                }, () => { 
+                    this.isCanScroll()
                 })
             }).catch(error => { 
                 console.log(error);

@@ -1,7 +1,5 @@
-import axios from 'axios';
-import * as util from '../utils/star_util'
-
 import { STAR_FETCH_FAIL, STAR_FETCH_SUCCESS, STAR_FETCH_REQUEST } from '../actionTypes/starActionTypes'
+import { GET_STAR_DETAIL } from '../apis/request'
 
 const  actionCreator= (type,data) =>({
     type: type,
@@ -12,17 +10,15 @@ const  actionCreator= (type,data) =>({
  * 获取 star 的详细信息
  * @param {url} url 
  */
-export const getStarDetail = (url) => {
+export const getStarDetail = (domain) => {
     return (dispatch, getState) => {
         dispatch(actionCreator(STAR_FETCH_REQUEST));
         return new Promise((resolve, reject) => {
-            let _url = util.replaceUrl(url);
-            axios.get(_url)
+            GET_STAR_DETAIL({ domain: domain})
                 .then(result => { 
-                    // console.log(result.data);
-                    if (result.data.star) {
-                        dispatch(actionCreator(STAR_FETCH_SUCCESS,result.data));
-                        resolve(Object.assign(result.data, {action_type: STAR_FETCH_SUCCESS}));
+                    if (result.star) {
+                        dispatch(actionCreator(STAR_FETCH_SUCCESS,result));
+                        resolve(Object.assign(result, {action_type: STAR_FETCH_SUCCESS}));
                     } else { 
                         reject(Object.assign({}, {'message':'异步加载数据失败--1'}))
                     }

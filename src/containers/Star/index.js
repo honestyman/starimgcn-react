@@ -1,27 +1,28 @@
 import React, { Component } from "react";
 import { Box, Masonry, Spinner } from "gestalt";
-import StarHeader from "../../components/StarHeader";
-import Pin from "../../components/PinItem";
+
+import store from "../../store";
 import { getStarDetail } from "../../actions/starActions";
 import { STAR_FETCH_SUCCESS } from "../../actionTypes/starActionTypes";
-import store from "../../store";
 import { getPins } from "../../actions/pinsActions";
+
 import * as until from "../../utils/star_util";
 
+import StarHeader from "../../components/StarHeader";
+import Pin from "../../components/PinItem";
 import StarTabs from "../../components/StarTabs";
 import StarSort from "../../components/StarSort";
+
 import "./index.scss";
 export default class Star extends Component {
     constructor(props, context) {
         super(props, context);
         this.clientWidth = window.innerWidth;
-        const { domain} = props.match.params
         this.pre_index = 1;
         this.isFetching = false;
         this.current_page = 0;
         this.last_page = 2;
-        this.domain = domain;
-        console.log(this.domain,domain)
+        this.domain = props.match.params.domain;
         this.state = {
             star: null,
             ins_count: 0,
@@ -49,6 +50,18 @@ export default class Star extends Component {
             let sort =
                 type === "time" ? this.state.time_sort : this.state.like_sort;
             this.getStarPins(type, sort);
+        }
+    }
+        // 首次加载完内容检测是否达到滚动标准
+    // 没有的话就继续加载一次
+    isCanScroll() { 
+        let scrollHeight = until.getScrollHeight();
+        let windowHeight = until.getWindowHeight();
+        if (!(scrollHeight > windowHeight)) { 
+            let type = this.state.sort_by;
+            let sort =
+                type === "time" ? this.state.time_sort : this.state.like_sort;
+            this.getStarPins(type,sort)
         }
     }
     /**
@@ -119,7 +132,7 @@ export default class Star extends Component {
     getStarDetail() {
         return new Promise((resolve, reject) => {
             store
-                .dispatch(getStarDetail("/star/" + this.domain))
+                .dispatch(getStarDetail(this.domain))
                 .then(res => {
                     if (res.action_type === STAR_FETCH_SUCCESS) {
                         const {
@@ -127,13 +140,11 @@ export default class Star extends Component {
                             ins_count,
                             wb_count
                         } = store.getState().star;
-                        console.log(store.getState().star)
                         this.setState({
                             star: star,
                             ins_count: ins_count,
                             wb_count: wb_count
                         });
-                        console.log(ins_count,wb_count)
                         resolve({ status: 200, message: "success" });
                     }
                 })
@@ -215,14 +226,12 @@ export default class Star extends Component {
     render() {
         return (
             <div className="star_container">
-                {this.state.star ? (
-                    <StarHeader
-                        {...this.state.star}
-                        ins_count={this.state.ins_count}
-                        wb_count={this.state.wb_count}
-                        clientWidth={this.clientWidth}
-                    />
-                ) : null}
+                <StarHeader
+                    {...this.state.star}
+                    ins_count={this.state.ins_count}
+                    wb_count={this.state.wb_count}
+                    clientWidth={this.clientWidth}
+                />
                 {/* tabs */}
                 <StarTabs
                     clientWidth={this.clientWidth}

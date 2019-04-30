@@ -183,10 +183,10 @@ export default class StarHeader extends Component {
                     </Column>
                     <Column span={this.isMobile ? 9 : 5}>
                         <StarProfile
-                            name={this.props.name}
+                            name={this.props.name || '漂亮小姐姐'}
                             verified={this.props.verified}
-                            verified_reason={this.props.verified_reason}
-                            posts_count={this.props.posts_count}
+                            verified_reason={this.props.verified_reason || '认证信息'}
+                            posts_count={this.props.posts_count || 0}
                         />
                         {this.isMobile ? (
                             <StarSocial {...this.props} />

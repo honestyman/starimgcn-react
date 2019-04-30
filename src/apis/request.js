@@ -2,14 +2,15 @@ import axios from 'axios';
 import { commonRequest, INVALID_TOKEN } from './config'
 
 // POST/GET/PUT/DELETE 请求
-function Request (url, method, params, errcb) {
+function Request (url, method, data, errcb) {
     return new Promise(function (resolve, reject) {
-      axios(commonRequest(url, method, params)).then((res) => {
+      axios(commonRequest(url, method, data)).then((res) => {
         if (res.data) {
           resolve(res.data)
         }else if (res.data.code === INVALID_TOKEN) {
             reject({'message': '无效的 Token 值！'})
         } else if (errcb) {
+          errcb();
           resolve(res.data)
         }
       }).catch(err => {
@@ -32,7 +33,19 @@ export const GET_RECENT_PINS = (data) => Request('/getRecentImages', 'post', dat
 export const GET_STAR_PINS = (data) => Request('/starImages/' + data.domain, 'post', data, undefined)
 
 /**
+ * 获取明星详情
+ * @param {*} data 
+ */
+
+export const GET_STAR_DETAIL = (data) => Request('/star/' + data.domain, 'post', data, undefined)
+ 
+/**
+ * 获取明星列表信息
+ * @param {*} data 
+ */
+export const GET_STAR_LIST = (data) => Request('getStars','post',data,undefined)
+/**
  * 关键词搜索明星
  * @param key
  */
-export const SEARCH_STAR = (data) => Request('/searchSatr','get',undefined,data)
+export const SEARCH_STAR = (data) => Request('/searchStar','post',data,undefined)
