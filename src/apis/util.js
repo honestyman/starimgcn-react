@@ -1,5 +1,6 @@
 export function getHeaders () {
-    return {
+  return {
+    'Access-Control-Allow-Origin': '*'
     }
   }
   

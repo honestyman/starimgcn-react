@@ -50,7 +50,7 @@ export const GET_STAR_DETAIL = data =>
  * @param {*} data
  */
 export const GET_STAR_LIST = data =>
-    Request("getStars", "post", data, undefined);
+    Request("/getStars", "post", data, undefined);
 /**
  * 关键词搜索明星
  * @param key
