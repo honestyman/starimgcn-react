@@ -34,7 +34,7 @@ export function commonRequest(url, method, params, data) {
   }
   return {
     // `url` 是用于请求的服务器 URL
-    url: url,
+    url: process.env.NODE_ENV === 'development' ? url : BASE_URL+url,
     // `method` 是创建请求时使用的方法
     method: method, // 默认是 get
     // `baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL。
