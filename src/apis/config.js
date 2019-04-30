@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'development') {
   BASE_URL = 'http://127.0.0.1:3000'
 } else {
   // 生产实际 URL
-  BASE_URL = 'https://api.starimg.cn'
+  BASE_URL = 'https://api.starimg.cn/'
 }
 
 
