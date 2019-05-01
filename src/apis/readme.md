@@ -8,9 +8,10 @@ axios 首先向要请求的服务器，发送一条 methond 为“options” 的
 
 ```shell
 location / {
-        add_header Access-Control-Allow-Origin http://test.starimg.cn;
-        add_header Access-Control-Allow-Headers *;
-        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+        add_header Access-Control-Allow-Origin * ;
+        add_header Access-Control-Allow-Headers 'Token,Origin,Content-Type, Cookie,X-CSRF-TOKEN,Accept,Authorization,X-XSRF-TOKEN,X-Requested-With' ;
+        add_header Access-Control-Allow-Methods 'GET,POST,PUT,DELETE,OPTIONS' ;
+
         if ($request_method = 'OPTIONS') {
          return 204;
     }
@@ -35,13 +36,13 @@ public function handle($request, Closure $next){
         ];
         if (in_array($origin, $allow_origin)) {
             $response->header('Access-Control-Allow-Origin', $origin);
-            $response->header('Access-Control-Allow-Headers', 'Origin, Content-Type, Cookie, X-CSRF-TOKEN, Accept, Authorization, X-XSRF-TOKEN');
-            $response->header('Access-Control-Allow-Headers', 'Origin,  Cookie, X-CSRF-TOKEN, Accept, X-XSRF-TOKEN');
+            //$response->header('Access-Control-Allow-Headers', 'x-csrf-token,x-requested-with');
+            //$response->header('Access-Control-Allow-Headers', 'Origin, Content-Type, Cookie, X-CSRF-TOKEN, Accept, Authorization, X-XSRF-TOKEN');
+            //$response->header('Access-Control-Allow-Headers', 'Origin,  Cookie, X-CSRF-TOKEN, Accept, X-XSRF-TOKEN');
             $response->header('Access-Control-Allow-Headers', '*');
             $response->header('Access-Control-Expose-Headers', 'Authorization, authenticated');
             $response->header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, OPTIONS');
-            $response->header('Access-Control-Allow-Credentials', false);
-            $response->header('Access-Control-Allow-Headers', 'x-csrf-token,x-requested-with');
+            $response->header('Access-Control-Allow-Credentials', 'false');
         }
         return $response;
     }
