@@ -57,10 +57,10 @@ export function commonRequest(url, method, params, data) {
         return data
       }
     }],
-    // headers: {'Accept': 'application/json;charset=UTF-8', 'Content-Type': 'application/json', 'Token': token},
+    headers: Object.assign(getHeaders(),{token: token}),
     // `params` 是即将与请求一起发送的 URL 参数
     // 必须是一个无格式对象(plain object)或 URLSearchParams 对象
-    params: Object.assign(getHeaders(), params),
+    params: Object.assign({}, params),
     // `data` 是作为请求主体被发送的数据
     // 只适用于这些请求方法 'PUT', 'POST', 和 'PATCH'
     // 在没有设置 `transformRequest` 时，必须是以下类型之一：
