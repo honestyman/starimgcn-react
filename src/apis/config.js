@@ -8,14 +8,6 @@ export const ERROR_SERVICE = 500
 
 export const INVALID_TOKEN = 100002
 
-let token
-if(getUrlParameter()['token']) {
-  window.localStorage.setItem('token', decodeURIComponent(getUrlParameter()['token']))
-  token = decodeURIComponent(getUrlParameter()['token'])
-} else {
-  token = window.localStorage.getItem('token')
-}
-
 let BASE_URL
 if (process.env.NODE_ENV === 'development') {
   // 测试 URL
