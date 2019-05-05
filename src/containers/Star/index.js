@@ -52,7 +52,7 @@ export default class Star extends Component {
             this.getStarPins(type, sort);
         }
     }
-        // 首次加载完内容检测是否达到滚动标准
+    // 首次加载完内容检测是否达到滚动标准
     // 没有的话就继续加载一次
     isCanScroll() { 
         let scrollHeight = until.getScrollHeight();

@@ -38,6 +38,15 @@ export default class PinsContail extends Component {
             this.updatePins()
         }
     }
+       // 首次加载完内容检测是否达到滚动标准
+    // 没有的话就继续加载一次
+    isCanScroll() { 
+        let scrollHeight = until.getScrollHeight();
+        let windowHeight = until.getWindowHeight();
+        if (!(scrollHeight > windowHeight)) { 
+            this.updatePins()
+        }
+    }
     // get pins
     updatePins() { 
         this.setState({
@@ -55,6 +64,8 @@ export default class PinsContail extends Component {
                     this.setState({
                         ...state,
                         show_spinner: false
+                    }, () => { 
+                        this.isCanScroll()
                     })
                 } else if (res.action_type === PINS_FETCH_FAIL) { 
                     console.log(res.message)
