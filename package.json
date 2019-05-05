@@ -142,6 +142,7 @@
   "proxy": "https://api.starimg.cn",
   "devDependencies": {
     "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "react-router-dom": "^5.0.0",
     "react-test-renderer": "^16.8.6"
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Box, Link, Avatar, Text } from 'gestalt'
 import PropTypes from "prop-types";
 
-export default class SatrCardProfile extends Component { 
+export default class StarCardProfile extends Component { 
     static propTypes = {
         avatar: PropTypes.string.isRequired,
         domain: PropTypes.string,

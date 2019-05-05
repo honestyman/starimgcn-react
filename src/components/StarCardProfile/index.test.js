@@ -1,5 +1,5 @@
 import React from 'react';
-import SatrCardProfile from './index';
+import StarCardProfile from './index';
 import renderer from 'react-test-renderer';
 // import {shallow} from 'enzyme'
 
@@ -13,7 +13,7 @@ test('test starToast', () => {
         description: 'this is person description'
     }
     const component = renderer.create(
-        <SatrCardProfile {...props} />
+        <StarCardProfile {...props} />
     );
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();

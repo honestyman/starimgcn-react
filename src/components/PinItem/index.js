@@ -52,7 +52,7 @@ function PinItemOrigin(props) {
     );
 }
 
-function SatrCardProfile(props) {
+function StarCardProfile(props) {
     return (
         <Box
             display="flex"
@@ -356,7 +356,7 @@ export default class Pin extends Component {
                             </div>
                         </Box>
                         {this.clientWidth > 768 ? (
-                            <SatrCardProfile {...this.starProfile} />
+                            <StarCardProfile {...this.starProfile} />
                         ) : null}
                     </Card>
                 </Box>

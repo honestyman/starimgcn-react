@@ -5,12 +5,12 @@ import PropTypes from "prop-types";
 
 export default class StarToast extends Component {
     static propTypes = {
-        showTaost: PropTypes.bool.isRequired,
-        test: PropTypes.string.isRequired
+        showToast: PropTypes.bool.isRequired,
+        text: PropTypes.string.isRequired
     };
     constructor(props) {
         super(props);
-        this.showTaost = props.showTaost || false;
+        this.showToast = props.showToast || false;
         this.text = props.text || "";
         this.container = document.createElement("div");
         document.body.appendChild(this.container);
@@ -37,7 +37,7 @@ export default class StarToast extends Component {
                     paddingX={1}
                     position="fixed"
                 >
-                    {this.showTaost ? (
+                    {this.showToast ? (
                         <Toast
                             color="orange"
                             text={this.text || "咦，好像哪里出错了！"}
