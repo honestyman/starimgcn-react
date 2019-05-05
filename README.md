@@ -33,7 +33,7 @@ webpack 的 config 文件，在 `config` 目录下。
 
 ### `npm test`
 
-测试模式
+测试模式。jest + emzyme + react-test-renderer
 
 ### `npm run build`
 

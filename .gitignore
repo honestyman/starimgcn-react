@@ -8,6 +8,7 @@
 # testing
 /coverage
 /src/**/*.css
+/src/**/__snapshots__
 
 # production
 /build
