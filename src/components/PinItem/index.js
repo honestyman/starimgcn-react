@@ -229,7 +229,7 @@ export default class Pin extends Component {
         }
 
         let img_props = {
-            top: top,
+            top: height<winHeight? ((winHeight-height)/2).toFixed(2) : top,
             width: width,
             height: height,
             left: ((winWidth - width) / 2).toFixed(2),
