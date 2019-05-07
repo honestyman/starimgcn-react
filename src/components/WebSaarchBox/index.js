@@ -7,6 +7,7 @@ import store from '../../store'
 export default class SearchBox extends Component { 
     constructor(props) { 
         super(props);
+        console.log(props);
         this.state = {
             value: '',
             isFetching: false

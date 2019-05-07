@@ -1,27 +1,13 @@
 import { Toast, Box } from "gestalt";
-import React, { Component } from "react";
-import ReactDom from "react-dom";
-import PropTypes from "prop-types";
+import React from "react";
+import { connect } from "react-redux";
 
-export default class StarToast extends Component {
-    static propTypes = {
-        showToast: PropTypes.bool.isRequired,
-        text: PropTypes.string.isRequired
-    };
-    constructor(props) {
-        super(props);
-        this.showToast = props.showToast || false;
-        this.text = props.text || "";
-        this.container = document.createElement("div");
-        document.body.appendChild(this.container);
-    }
-    componentWillUnmount() {
-        document.body.removeChild(this.container);
-    }
+import store from "../../store";
 
-    render() {
-        return ReactDom.createPortal(
-            <div className="modal">
+const StarToast = props => {
+    return (
+        <div className="starToast">
+            {props.show ? (
                 <Box
                     display="flex"
                     alignItems="center"
@@ -37,15 +23,20 @@ export default class StarToast extends Component {
                     paddingX={1}
                     position="fixed"
                 >
-                    {this.showToast ? (
-                        <Toast
-                            color="orange"
-                            text={this.text || "咦，好像哪里出错了！"}
-                        />
-                    ) : null}
+                    <Toast
+                        color="orange"
+                        text={props.text || "咦，好像哪里出错了！"}
+                    />
                 </Box>
-            </div>,
-            this.container
-        );
-    }
+            ) : null}
+        </div>
+    );
+};
+
+function mapStateToProps(state, ownProps) {
+    return {
+        ...store.getState().common.toast
+    };
 }
+
+export default connect(mapStateToProps)(StarToast);
