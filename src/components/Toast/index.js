@@ -2,8 +2,6 @@ import { Toast, Box } from "gestalt";
 import React from "react";
 import { connect } from "react-redux";
 
-import store from "../../store";
-
 const StarToast = props => {
     return (
         <div className="starToast">
@@ -35,7 +33,7 @@ const StarToast = props => {
 
 function mapStateToProps(state, ownProps) {
     return {
-        ...store.getState().common.toast
+        ...state.common.toast
     };
 }
 

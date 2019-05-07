@@ -229,7 +229,10 @@ export default class Pin extends Component {
         }
 
         let img_props = {
-            top: height<winHeight? ((winHeight-height)/2).toFixed(2) : top,
+            top:
+                height < winHeight
+                    ? ((winHeight - height) / 2).toFixed(2)
+                    : top,
             width: width,
             height: height,
             left: ((winWidth - width) / 2).toFixed(2),
@@ -288,6 +291,32 @@ export default class Pin extends Component {
     }
 
     render() {
+        const naturalWidth =
+            this.item.origin === "微博"
+                ? this.item.pic_detail.geo
+                    ? this.item.pic_detail.geo.width
+                    : 360
+                : this.item.pic_detail
+                ? this.item.pic_detail[0].config_width
+                : 120;
+        const naturalHeight =
+            this.item.origin === "微博"
+                ? this.item.pic_detail.geo
+                    ? this.item.pic_detail.geo.height > 1200
+                        ? 1200
+                        : this.item.pic_detail.geo.height
+                    : 540
+                : this.item.pic_detail
+                ? this.item.pic_detail[0].config_height
+                : 120;
+        const img_src =
+            this.item.origin === "微博"
+                ? this.item.pic_detail
+                    ? this.item.pic_detail.url
+                    : this.item.display_url
+                : "https://star-1256165736.picgz.myqcloud.com/" +
+                  this.item.cos_url +
+                  "!small";
         return (
             <div className="pinItem" key={this.item.id}>
                 <Box
@@ -312,38 +341,12 @@ export default class Pin extends Component {
                                     // fit="cover"
                                     color={imageColor[this.itemIdx]}
                                     naturalWidth={
-                                        this.item.origin === "微博"
-                                            ? this.item.pic_detail.geo
-                                                ? this.item.pic_detail.geo.width
-                                                : 360
-                                            : this.item.pic_detail
-                                            ? this.item.pic_detail[0]
-                                                  .config_width
-                                            : 120
+                                        parseFloat(naturalWidth) || 360
                                     }
                                     naturalHeight={
-                                        this.item.origin === "微博"
-                                            ? this.item.pic_detail.geo
-                                                ? this.item.pic_detail.geo
-                                                      .height > 1200
-                                                    ? 1200
-                                                    : this.item.pic_detail.geo
-                                                          .height
-                                                : 540
-                                            : this.item.pic_detail
-                                            ? this.item.pic_detail[0]
-                                                  .config_height
-                                            : 120
+                                        parseFloat(naturalHeight) || 540
                                     }
-                                    src={
-                                        this.item.origin === "微博"
-                                            ? this.item.pic_detail
-                                                ? this.item.pic_detail.url
-                                                : this.item.display_url
-                                            : "https://star-1256165736.picgz.myqcloud.com/" +
-                                              this.item.cos_url +
-                                              "!small"
-                                    }
+                                    src={img_src}
                                 >
                                     {this.state.hovered ? (
                                         <PinItemOrigin
