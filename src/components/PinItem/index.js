@@ -215,18 +215,19 @@ export default class Pin extends Component {
             : document.body.clientWidth;
         // 图片高度超过视窗
         let top = 0;
-        if (height >= winHeight) {
-            let rate = width / height;
-            height = winHeight;
-            width = rate * winHeight;
-            top = height <= winHeight ? (winHeight - height) / 2 : 0;
-        }
-        if (width >= winWidth) {
+          if (width >= winWidth) {
             let rate = winWidth / width;
             width = winWidth;
             height = height * rate;
             top = winHeight > height ? (winHeight - height) / 2 : 0;
         }
+        // if (height >= winHeight) {
+        //     let rate = width / height;
+        //     height = winHeight;
+        //     width = rate * winHeight;
+        //     top = height <= winHeight ? (winHeight - height) / 2 : 0;
+        // }
+      
 
         let img_props = {
             top:
@@ -249,13 +250,17 @@ export default class Pin extends Component {
         this.setState({
             show_image: true,
             img_props: img_props
+        }, () => { 
+          document.body.style.overflowY = 'hidden'      
         });
     }
     /**
      * 关闭大图浏览
      */
     closeImageViewer() {
-        this.setState({ show_image: false });
+        this.setState({ show_image: false }, () => { 
+            document.body.style.overflowY = 'auto'   
+        });
     }
 
     /**

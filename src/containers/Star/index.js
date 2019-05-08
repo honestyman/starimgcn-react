@@ -211,7 +211,13 @@ export default class Star extends Component {
         this.getStarDetail().then(res => {
             if (res.status === 200) {
                 // 加载 pins
-                _this.getStarPins("time", "desc", "instagram");
+                let type = this.state.ins_count > 0 ? 'instagram' : '微博'
+                _this.setState({
+                    itemIndex: type ==='instagram' ? 1 : 0
+                }, () => { 
+                    this.pre_index = type ==='instagram' ? 1 : 0
+                     _this.getStarPins("time", "desc",  type);      
+                })
             } else {
                 // try again
                 _this.getStarDetail();

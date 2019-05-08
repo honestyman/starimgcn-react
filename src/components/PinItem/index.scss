@@ -41,14 +41,14 @@
     }
   }
   .mobile_description{
-    position: absolute;
+    position: fixed;
     bottom: 15px;
     width: 100%;
     line-height: 18px;
   }
   @media(max-width:768px){
     .mobile_card_profile{
-      position: absolute;
+      position: fixed;
       top: 0;
       width: 100%;
       color: #fff;

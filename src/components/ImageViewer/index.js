@@ -28,7 +28,7 @@ class ImageViewerBox extends Component{
         return ReactDom.createPortal(
             <div className='image-viewer-box'>
                <div className='image-viewer' onClick={this.props.onClose}>
-                   <div className='image-box'>
+                    <div className='image-box'>
                         <img src={this.state.img_url} alt="" className="img" style={style} />
                         {this.props.children}
                    </div>
