@@ -10,20 +10,24 @@ const actionCreator = (type,data) => () => ({
 
 export const searchStar = (url, keyWord) => {
     return (dispatch, getState) => {
+        // 请求开始
         dispatch(actionCreator(SEARCH_FETCH_REQUEST));
         return new Promise((resolve, reject) => { 
             SEARCH_STAR({ key: keyWord })
                 .then(result => { 
                     if (result.data) {
+                        // 请求成功
                         dispatch(actionCreator(SEARCH_FETCH_SUCCESS,result));
                         resolve(result);
                     } else { 
+                        // 获取数据失败
                         dispatch(actionCreator(SEARCH_FETCH_FAIL))
                         reject(Object.assign({}, {'message':'异步加载数据失败'}))
                     }
                     
                 })
                 .catch(error => { 
+                    // 请求过程发生错误
                     console.log(error);
                     dispatch(actionCreator(SEARCH_FETCH_FAIL,error))
                     reject(Object.assign({}, {'message':'异步加载数据失败'}))

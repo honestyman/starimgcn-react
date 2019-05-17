@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 
-import WebHeader from "../../components/WebHeader";
-import MobileHeader from "../../components/MobileHeader";
+import WebHeader from "../../containers/WebHeader";
+import MobileHeader from "../../containers/MobileHeader";
 
 export default class Header extends Component {
     constructor(props) {
         super(props);
-        // console.log(props);
         this.isMobile = window.innerWidth <= 768;
     }
 
@@ -20,9 +19,9 @@ export default class Header extends Component {
 
     render() {
         return this.isMobile ? (
-            <MobileHeader handleChange={this.props.handleChange} />
+            <MobileHeader />
         ) : (
-            <WebHeader handleChange={this.props.handleChange} />
+            <WebHeader />
         );
     }
 }

@@ -1,9 +1,19 @@
 import React, { Component} from "react";
-import { SearchField } from 'gestalt';
+import { SearchField,Box } from 'gestalt';
 import { searchStar } from '../../actions/searchStarActions'
 
 import store from '../../store'
 
+
+function ResultList(props) { 
+    return (
+        <Box paddingX={2} paddingY={1}>
+            <ul className="star_list">
+
+            </ul>
+        </Box>
+    );
+}
 export default class SearchBox extends Component { 
     constructor(props) { 
         super(props);
@@ -43,6 +53,7 @@ export default class SearchBox extends Component {
                     value={this.state.value}
                     onBlur={({ event }) => { console.log('----'+event.target.value)}}
                 />
+                <ResultList />
         </div>
         )
     }

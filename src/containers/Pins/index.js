@@ -17,6 +17,7 @@ export default class PinsContail extends Component {
             current_page: 0,
             isFetching: false,
         };
+        this.handleScroll = this.handleScroll.bind(this);
     }
 
     // 在第一次渲染后调用，只在客户端。
@@ -24,10 +25,7 @@ export default class PinsContail extends Component {
     // 这样你才能够在请求的数据到达时使用 setState 更新你的组件。
     componentDidMount() {
         this.updatePins();
-        let _this = this;
-        window.addEventListener('scroll', () => {
-            _this.handleScroll();
-        });
+        window.addEventListener('scroll',this.handleScroll);
     }
     // 距离底部30px时，加载更多内容
     handleScroll() {
@@ -79,7 +77,7 @@ export default class PinsContail extends Component {
             })
     }
     componentWillUnmount() { 
-        window.removeEventListener('scroll', () => { });
+        window.removeEventListener('scroll', this.handleScroll);
     }
     render() {
         return (

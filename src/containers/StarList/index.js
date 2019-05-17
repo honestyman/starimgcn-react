@@ -19,6 +19,7 @@ export default class StarListContainer extends Component {
             current_page: 0,
             isFetching: false,
         };
+        this.handleScroll = this.handleScroll.bind(this);
     }
 
     // 在第一次渲染后调用，只在客户端。
@@ -26,11 +27,7 @@ export default class StarListContainer extends Component {
     // 这样你才能够在请求的数据到达时使用 setState 更新你的组件。
     componentDidMount() {
         this.updateStars();
-        let _this = this;
-
-        window.addEventListener('scroll', () => {
-            _this.handleScroll();
-        });
+        window.addEventListener('scroll', this.handleScroll);
 
     }
     // 首次加载完内容检测是否达到滚动标准
@@ -100,6 +97,7 @@ export default class StarListContainer extends Component {
             })
     }
     componentWillUnmount() { 
+        window.removeEventListener('scroll',this.handleScroll)
         clearTimeout(this.timer)
     }
     render() {

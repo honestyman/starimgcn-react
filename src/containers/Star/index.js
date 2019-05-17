@@ -39,6 +39,7 @@ export default class Star extends Component {
         this.handleItemChange = this.handleItemChange.bind(this);
         this.hanleSortBy = this.hanleSortBy.bind(this);
         this.toggleLayout = this.toggleLayout.bind(this);
+        this.handleScroll = this.handleScroll.bind(this);
     }
     // 距离底部30px时，加载更多内容
     handleScroll() {
@@ -224,9 +225,14 @@ export default class Star extends Component {
             }
         });
         
-        window.addEventListener("scroll", () => {
-            _this.handleScroll();
-        });
+        window.addEventListener("scroll", this.handleScroll);
+    }
+    /**
+     * 卸载
+     */
+
+    componentWillUnmount() { 
+        window.removeEventListener('scroll', this.handleScroll);
     }
     
     render() {
