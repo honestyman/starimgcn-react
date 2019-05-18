@@ -118,7 +118,10 @@ function MobileStarProfile(props) {
                         />
                     </Link>
                     <Link href={props.domain} target={"self"} inline>
-                        {props.name} <span style={{ color: '#ddd',fontSize: "0.8em"}}>@{props.domain}</span>
+                        {props.name}{" "}
+                        <span style={{ color: "#ddd", fontSize: "0.8em" }}>
+                            @{props.domain}
+                        </span>
                     </Link>
                 </Box>
             </div>
@@ -136,20 +139,22 @@ function MobileStarProfile(props) {
 function ItemDescription(props) {
     return (
         <Box paddingX={2}>
-              <Text
-            color={props.isMobile ? "white" : "darkGray"}
-            align={"left"}
-            truncate={props.isMobile ? false : true}
-            size={props.isMobile ? "xs" : "md"}
-        >
-            <Link
-                href={"/pin/" + props.id}
-                target={"self"}
-                className={"PinLayer"}
+            <Text
+                color={props.isMobile ? "white" : "darkGray"}
+                align={"left"}
+                truncate={props.isMobile ? false : true}
+                size={props.isMobile ? "xs" : "md"}
             >
-                <Box padding={props.isMobile ? 2 : 0}>{props.description}</Box>
-            </Link>
-        </Text> 
+                <Link
+                    href={"/pin/" + props.id}
+                    target={"self"}
+                    className={"PinLayer"}
+                >
+                    <Box padding={props.isMobile ? 2 : 0}>
+                        {props.description}
+                    </Box>
+                </Link>
+            </Text>
         </Box>
     );
 }
@@ -217,7 +222,7 @@ export default class Pin extends Component {
             : document.body.clientWidth;
         // 图片高度超过视窗
         let top = 0;
-          if (width >= winWidth) {
+        if (width >= winWidth) {
             let rate = winWidth / width;
             width = winWidth;
             height = height * rate;
@@ -229,7 +234,6 @@ export default class Pin extends Component {
         //     width = rate * winHeight;
         //     top = height <= winHeight ? (winHeight - height) / 2 : 0;
         // }
-      
 
         let img_props = {
             top:
@@ -249,19 +253,22 @@ export default class Pin extends Component {
                       this.item.cos_url
                     : this.item.display_url
         };
-        this.setState({
-            show_image: true,
-            img_props: img_props
-        }, () => { 
-          document.body.style.overflowY = 'hidden'      
-        });
+        this.setState(
+            {
+                show_image: true,
+                img_props: img_props
+            },
+            () => {
+                document.body.style.overflowY = "hidden";
+            }
+        );
     }
     /**
      * 关闭大图浏览
      */
     closeImageViewer() {
-        this.setState({ show_image: false }, () => { 
-            document.body.style.overflowY = 'auto'   
+        this.setState({ show_image: false }, () => {
+            document.body.style.overflowY = "auto";
         });
     }
 
