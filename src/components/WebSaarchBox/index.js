@@ -7,7 +7,7 @@ import store from '../../store'
 
 function ResultList(props) { 
     return (
-        <Box paddingX={2} paddingY={1}>
+        <Box paddingX={2} paddingY={1} display="none">
             <ul className="star_list">
 
             </ul>

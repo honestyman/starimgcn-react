@@ -143,7 +143,7 @@ function ItemDescription(props) {
                 color={props.isMobile ? "white" : "darkGray"}
                 align={"left"}
                 truncate={props.isMobile ? false : true}
-                size={props.isMobile ? "xs" : "md"}
+                size={props.isMobile ? "xs" : "xs"}
             >
                 <Link
                     href={"/pin/" + props.id}

@@ -30,7 +30,7 @@ class Header extends Component {
         return (
             <Sticky top={0} dangerouslySetZIndex={{ __zIndex: 671 }}>
                 <div className='web_header'>
-                    <Box color="white" shape="rounded" paddingX={8} paddingY={3} display="flex" direction="row" alignItems="center">
+                    <Box color="white" shape="rounded" paddingX={8} paddingY={3} display="flex" direction="row" alignItems="start">
                         {/* logo or brand */}
                         <Box padding={2}>
                             <NavLink to="/">
