@@ -106,7 +106,7 @@ function MobileStarProfile(props) {
                     marginTop={1}
                     color="transparent"
                     alignItems="center"
-                    justifyContent="center"
+                    justifyContent="start"
                 >
                     <Link href={props.domain} target={"self"} inline>
                         <Avatar
@@ -118,7 +118,7 @@ function MobileStarProfile(props) {
                         />
                     </Link>
                     <Link href={props.domain} target={"self"} inline>
-                        {props.name}
+                        {props.name} <span style={{ color: '#ddd',fontSize: "0.8em"}}>@{props.domain}</span>
                     </Link>
                 </Box>
             </div>
@@ -135,11 +135,12 @@ function MobileStarProfile(props) {
 }
 function ItemDescription(props) {
     return (
-        <Text
+        <Box paddingX={2}>
+              <Text
             color={props.isMobile ? "white" : "darkGray"}
             align={"left"}
             truncate={props.isMobile ? false : true}
-            size={props.isMobile ? "md" : "xs"}
+            size={props.isMobile ? "xs" : "md"}
         >
             <Link
                 href={"/pin/" + props.id}
@@ -148,7 +149,8 @@ function ItemDescription(props) {
             >
                 <Box padding={props.isMobile ? 2 : 0}>{props.description}</Box>
             </Link>
-        </Text>
+        </Text> 
+        </Box>
     );
 }
 export default class Pin extends Component {
