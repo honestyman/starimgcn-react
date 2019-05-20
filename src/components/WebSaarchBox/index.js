@@ -1,17 +1,24 @@
 import React, { Component } from "react";
 import { SearchField, Box, Link, Avatar, Text } from "gestalt";
 
-import './index.scss'
+import "./index.scss";
 
 function ResultList(props) {
     const listItems = props.lists.map(item => (
-        <ResultItem {...item} key={item.domain}/>
-    ))
+        <ResultItem {...item} key={item.domain} />
+    ));
     return (
         <Box paddingX={2} paddingY={1}>
-            <ul className="star_list">
-                {listItems}
-            </ul>
+            {props.lists.length > 0 ? (
+                <ul className="star_list">{listItems}</ul>
+            ) : props.value ? (
+                <Box paddingY={2}>
+                    <Text color={"gray"}>
+                        你要 pick 的 star ,还没有收录哦！可发邮件到
+                        me@johnnyzhang.cn 联系我。
+                    </Text>
+                </Box>
+            ) : null}
         </Box>
     );
 }
@@ -37,9 +44,15 @@ function ResultItem(props) {
                     </Link>
                 </Box>
                 <Box flex="grow" paddingX={2}>
-                    <Text color={"gray"} align={"left"} truncate size="xs" lineHeight={30}>
+                    <Text
+                        color={"gray"}
+                        align={"left"}
+                        truncate
+                        size="xs"
+                        lineHeight={30}
+                    >
                         <Link href={props.domain} target={"self"}>
-                            {props.name} {'('+props.profession+')'}
+                            {props.name} {"(" + props.profession + ")"}
                         </Link>
                     </Text>
                 </Box>
@@ -81,7 +94,7 @@ class SearchBox extends Component {
                         console.log("----" + event.target.value);
                     }}
                 />
-                <ResultList lists={this.props.data} />
+                <ResultList lists={this.props.data} value={this.state.value} />
             </div>
         );
     }
