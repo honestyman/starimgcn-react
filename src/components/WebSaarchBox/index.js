@@ -1,60 +1,90 @@
-import React, { Component} from "react";
-import { SearchField,Box } from 'gestalt';
-import { searchStar } from '../../actions/searchStarActions'
+import React, { Component } from "react";
+import { SearchField, Box, Link, Avatar, Text } from "gestalt";
 
-import store from '../../store'
+import './index.scss'
 
-
-function ResultList(props) { 
+function ResultList(props) {
+    const listItems = props.lists.map(item => (
+        <ResultItem {...item} key={item.domain}/>
+    ))
     return (
-        <Box paddingX={2} paddingY={1} display="none">
+        <Box paddingX={2} paddingY={1}>
             <ul className="star_list">
-
+                {listItems}
             </ul>
         </Box>
     );
 }
-export default class SearchBox extends Component { 
-    constructor(props) { 
+function ResultItem(props) {
+    return (
+        <li key={props.domain}>
+            <Box
+                display="flex"
+                direction="row"
+                paddingY={2}
+                paddingX={2}
+                marginTop={1}
+                color={"white"}
+                alignItems="center"
+            >
+                <Box width={30}>
+                    <Link href={props.domain} target={"self"}>
+                        <Avatar
+                            name={props.name}
+                            src={props.avatar}
+                            verified={props.verified || false}
+                        />
+                    </Link>
+                </Box>
+                <Box flex="grow" paddingX={2}>
+                    <Text color={"gray"} align={"left"} truncate size="xs" lineHeight={30}>
+                        <Link href={props.domain} target={"self"}>
+                            {props.name} {'('+props.profession+')'}
+                        </Link>
+                    </Text>
+                </Box>
+            </Box>
+        </li>
+    );
+}
+class SearchBox extends Component {
+    constructor(props) {
         super(props);
-        console.log(props);
         this.state = {
-            value: '',
-            isFetching: false
-        }
-        this.requestStatus = 'request'
+            value: ""
+        };
         this.input = null;
-        this.handleChange = this.handleChange.bind(this)
+        this.handleChange = this.handleChange.bind(this);
     }
-    componentDidMount() { 
+    componentDidMount() {
         // console.log(this.state.value)
     }
-    handleChange(key) { 
-        console.log(key)
-        if (this.requestStatus !== 'requesting' && key.length >= 2) { 
-            this.requestStatus = 'requesting'
-            store.dispatch(searchStar('/searchStar', key)).then(res => { 
-                console.log(res.data);
-            })
+    handleChange(key) {
+        console.log(key);
+        if (!this.props.isFetching && key.length >= 2) {
+            this.props.handleSearchChange(key);
         }
     }
-    render() { 
+    render() {
         return (
-            <div className={'searchBox'}>
+            <div className="searchBox">
                 <SearchField
                     accessibilityLabel="Demo Search Field"
                     id="searchField"
-                    onChange={
-                        ({ value}) => {
-                            this.setState({ value });
-                            this.handleChange(value)
-                        }}
+                    onChange={({ value }) => {
+                        this.setState({ value });
+                        this.handleChange(value);
+                    }}
                     placeholder="输入你想 pick 的 star 的名字"
                     value={this.state.value}
-                    onBlur={({ event }) => { console.log('----'+event.target.value)}}
+                    onBlur={({ event }) => {
+                        console.log("----" + event.target.value);
+                    }}
                 />
-                <ResultList />
-        </div>
-        )
+                <ResultList lists={this.props.data} />
+            </div>
+        );
     }
 }
+
+export default SearchBox;

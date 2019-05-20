@@ -10,21 +10,6 @@ import SearchBox from '../../components/WebSaarchBox'
 
 import './index.scss';
 class Header extends Component {
-    constructor(props) {
-        super(props);
-        console.log(props);
-        this.state = { value: '' };
-        this.searchInputChange = this.searchInputChange.bind(this);
-    }
-    searchInputChange(e){
-        this.setState({
-            value : e.target.value
-        })
-    }
-
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return false;
-    }
 
     render(){
         return (
@@ -39,7 +24,7 @@ class Header extends Component {
                         </Box>
                         {/* search part */}
                         <Box flex="grow" paddingX={2}>
-                            <SearchBox />
+                            <SearchBox {...this.props} />
                         </Box>
                         {/* right navlink */}
                         <Box paddingX={2} shape={'pill'} marginLeft={-2} marginRight={1}>
@@ -49,7 +34,7 @@ class Header extends Component {
                         </Box>
                         <Box paddingX={2} shape={'pill'} marginLeft={-2} marginRight={-2}>
                             <NavLink to='/explore' activeClassName="selected">
-                                <Button color="white" text={'坑现'}/>
+                                <Button color="white" text={'发现'}/>
                             </NavLink>
                         </Box>
                     </Box>
@@ -61,9 +46,10 @@ class Header extends Component {
 }
 
 function handleSearchChange(key) { 
+    console.log(key)
     if (key.length >= 2) { 
         store.dispatch(searchStar('/searchStar', key)).then(res => { 
-            console.log(res.data);
+            // console.log(res.data);
         })
     }
 }

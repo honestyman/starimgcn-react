@@ -4,7 +4,7 @@ import { SEARCH_FETCH_REQUEST,SEARCH_FETCH_SUCCESS,SEARCH_FETCH_FAIL} from '../a
 // initial state
 const initState = {
     search_value: '',
-    isFetching: true,
+    isFetching: false,
     lastUpdated: new Date().getTime(),
     current_page: 1,
     last_page: 1,
@@ -18,7 +18,8 @@ export default function (state = initState, action) {
             return {
                 ...state,
                 isFetching: true,
-                lastUpdated: new Date().getTime()
+                lastUpdated: new Date().getTime(),
+                search_value: action.search_value
             }; 
         }
         case SEARCH_FETCH_SUCCESS: { 
@@ -27,16 +28,17 @@ export default function (state = initState, action) {
                 ...state,
                 isFetching: false,
                 lastUpdated: new Date().getTime(),
-                current_page: action.result.current_page,
-                last_page: action.result.last_page,
-                data: [...state.data,...action.result.data] 
+                current_page: action.data.current_page,
+                last_page: action.data.last_page,
+                data: [...action.data.data] 
             }
         }
         case SEARCH_FETCH_FAIL: { 
             return {
                 ...state,
                 isFetching: false,
-                lastUpdated: new Date().getTime()
+                lastUpdated: new Date().getTime(),
+                search_value: action.search_value
             }
         }
         default: { 

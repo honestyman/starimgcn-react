@@ -1,0 +1,21 @@
+.searchBox{
+    position: relative;
+}
+.star_list{
+    list-style: none;
+    padding-left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    left: 0;
+    top: 42px;
+    background: #fff;
+    margin-top: 0;
+    opacity: 0.9;
+    img{
+        max-width: 30px;
+    }
+    li:hover >div{
+        background: #f1f1f1
+    }
+}
