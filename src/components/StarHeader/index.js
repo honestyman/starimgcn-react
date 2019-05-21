@@ -188,9 +188,9 @@ export default class StarHeader extends Component {
                             verified_reason={this.props.verified_reason || '认证信息'}
                             posts_count={this.props.posts_count || 0}
                         />
-                        {this.isMobile ? (
+                        {/* {this.isMobile ? ( */}
                             <StarSocial {...this.props} />
-                        ) : null}
+                        {/*  ) : null} */}
                         {!this.isMobile ? (
                             <StarBaiDuProfile
                                 baike={this.props.baike}

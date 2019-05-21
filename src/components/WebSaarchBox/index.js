@@ -4,6 +4,7 @@ import { SearchField, Box, Link, Avatar, Text } from "gestalt";
 import "./index.scss";
 
 function ResultList(props) {
+    console.log(props)
     const listItems = props.lists.map(item => (
         <ResultItem {...item} key={item.domain} />
     ));
