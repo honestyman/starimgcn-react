@@ -9,10 +9,13 @@ import store from '../../store'
 import { searchStar } from '../../actions/searchStarActions'
 import SearchBox from '../../components/WebSaarchBox'
 class MobileHeader extends Component { 
+
     render() { 
+        const is_explore = window.location.pathname === '/explore';
+        console.log(is_explore)
         return (
             <div className="mobile_header">
-                <SearchBox {...this.props}/>
+              <SearchBox {...this.props}/>
                 <div className="top_header">
                     <Sticky top={0} dangerouslySetZIndex={{ __zIndex: 671 }}>
                         <Box color="white" shape="rounded" paddingX={8} paddingY={3}>

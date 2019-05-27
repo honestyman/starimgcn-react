@@ -7,7 +7,8 @@ const initState = {
     lastUpdated: new Date().getTime(),
     current_page: 1,
     last_page: 1,
-    data: []
+    data: [],
+    show_search: true
 }
 
 export default function (state = initState, action) {

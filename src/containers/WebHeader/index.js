@@ -46,7 +46,6 @@ class Header extends Component {
 }
 
 function handleSearchChange(key) { 
-    console.log(key)
     if (key.length >= 2) { 
         store.dispatch(searchStar('/searchStar', key)).then(res => { 
             // console.log(res.data);

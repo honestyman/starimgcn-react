@@ -4,7 +4,6 @@ import { SearchField, Box, Link, Avatar, Text } from "gestalt";
 import "./index.scss";
 
 function ResultList(props) {
-    console.log(props)
     const listItems = props.lists.map(item => (
         <ResultItem {...item} key={item.domain} />
     ));
@@ -71,10 +70,9 @@ class SearchBox extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
     componentDidMount() {
-        // console.log(this.state.value)
+        // console.log(this.state.value))
     }
     handleChange(key) {
-        console.log(key);
         if (!this.props.isFetching && key.length >= 2) {
             this.props.handleSearchChange(key);
         }

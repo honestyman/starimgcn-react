@@ -1,5 +1,6 @@
 .searchBox{
     position: relative;
+    margin-top: 0;
 }
 .star_list{
     list-style: none;
@@ -17,5 +18,11 @@
     }
     li:hover >div{
         background: #f1f1f1
+    }
+}
+@media screen and (max-width:768px){
+    .searchBox{
+        margin-top: 50px;
+        padding: 0 8px;
     }
 }
