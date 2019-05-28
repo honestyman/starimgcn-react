@@ -19,7 +19,7 @@ export default function (state = initState, action) {
                 ...state,
                 isFetching: true,
                 lastUpdated: new Date().getTime(),
-                search_value: action.search_value
+                search_value: action.data.search_value
             }; 
         }
         case SEARCH_FETCH_SUCCESS: { 
@@ -30,10 +30,12 @@ export default function (state = initState, action) {
                 lastUpdated: new Date().getTime(),
                 current_page: action.data.current_page,
                 last_page: action.data.last_page,
-                data: [...action.data.data] 
+                data: [...action.data.data],
+                search_value: action.data.search_value
             }
         }
         case SEARCH_FETCH_FAIL: { 
+            console.log('request-fail--')
             return {
                 ...state,
                 isFetching: false,

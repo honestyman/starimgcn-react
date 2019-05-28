@@ -84,9 +84,9 @@
       "not op_mini all"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 version",
+      ">0.2%",
+      "IE 10"
     ]
   },
   "jest": {
@@ -141,6 +141,7 @@
   },
   "proxy": "https://api.starimg.cn",
   "devDependencies": {
+    "autoprefixer": "^9.5.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "react-router-dom": "^5.0.0",

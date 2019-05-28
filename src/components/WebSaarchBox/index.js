@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { SearchField, Box, Link, Avatar, Text } from "gestalt";
+import { connect } from "react-redux";
+
+import store from "../../store";
+import { searchStar } from "../../actions/searchStarActions";
 
 import "./index.scss";
 
@@ -8,18 +12,7 @@ function ResultList(props) {
         <ResultItem {...item} key={item.domain} />
     ));
     return (
-        <Box paddingX={2} paddingY={1}>
-            {props.lists.length > 0 ? (
-                <ul className="star_list">{listItems}</ul>
-            ) : props.value ? (
-                <Box paddingY={2}>
-                    <Text color={"gray"}>
-                        你要 pick 的 star ,还没有收录哦！可发邮件到
-                        me@johnnyzhang.cn 联系我。
-                    </Text>
-                </Box>
-            ) : null}
-        </Box>
+        <ul className="star_list">{listItems}</ul>
     );
 }
 function ResultItem(props) {
@@ -93,10 +86,48 @@ class SearchBox extends Component {
                         console.log("----" + event.target.value);
                     }}
                 />
-                <ResultList lists={this.props.data} value={this.state.value} />
+           
+                {this.props.data.length > 0 ? (
+                    <ResultList
+                        lists={this.props.data}
+                        value={this.state.value}
+                    />
+                ) : null}
+                    
+                    {this.props.data.length < 1 && this.state.value.lenth > 2 ? (
+                        <Box paddingY={2}>
+                            <Text color={"gray"}>
+                                你要 pick 的 star ,还没有收录哦！可发邮件到
+                                me@johnnyzhang.cn 联系我。
+                            </Text>
+                        </Box>
+                    ) : null}
+        
             </div>
         );
     }
 }
 
-export default SearchBox;
+function handleSearchChange(key) {
+    console.log(key);
+    if (key.length >= 2) {
+        store.dispatch(searchStar("/searchStar", key)).then(res => {
+            // console.log(res.data);
+        });
+    }
+}
+function mapStateToProps(state, ownProps) {
+    return {
+        ...state.search
+    };
+}
+function mapDispatchToProps() {
+    return {
+        handleSearchChange: handleSearchChange
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SearchBox);
