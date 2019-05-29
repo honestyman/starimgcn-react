@@ -1,21 +1,13 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Sticky, Box, Divider, Text, Icon} from 'gestalt'
 import { NavLink } from 'react-router-dom'
-import { connect } from "react-redux";
 
 import './index.scss'
 
-import store from '../../store'
-import { searchStar } from '../../actions/searchStarActions'
-import SearchBox from '../../components/WebSaarchBox'
-class MobileHeader extends Component { 
-
+export default class MobileHeader extends PureComponent { 
     render() { 
-        const is_explore = window.location.pathname === '/explore';
-        console.log(is_explore)
         return (
             <div className="mobile_header">
-              <SearchBox {...this.props}/>
                 <div className="top_header">
                     <Sticky top={0} dangerouslySetZIndex={{ __zIndex: 671 }}>
                         <Box color="white" shape="rounded" paddingX={8} paddingY={3}>
@@ -55,25 +47,3 @@ class MobileHeader extends Component {
         )
     }
 }
-
-function handleSearchChange(key) { 
-    console.log(key)
-    if (key.length >= 2) { 
-        store.dispatch(searchStar('/searchStar', key)).then(res => { 
-            // console.log(res.data);
-        })
-    }
-}
-
-function mapStateToProps(state,ownProps) { 
-    return {
-        ...state.search
-    }
-}
-function mapDispatchToProps() { 
-    return {
-        handleSearchChange: handleSearchChange
-    }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(MobileHeader)

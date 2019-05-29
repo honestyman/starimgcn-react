@@ -7,6 +7,7 @@ import { getStarLists } from '../../actions/starsActions';
 import * as until from '../../utils/star_util'
 import { STARS_FETCH_FAIL, STARS_FETCH_SUCCESS } from '../../actionTypes/starsActionTypes'
 
+import SearchBox from '../../components/WebSaarchBox'
 import './index.scss'
 export default class StarListContainer extends Component {
     constructor(props) {
@@ -29,7 +30,7 @@ export default class StarListContainer extends Component {
     componentDidMount() {
         this.updateStars();
         window.addEventListener('scroll', this.handleScroll);
-
+        
     }
     // 首次加载完内容检测是否达到滚动标准
     // 没有的话就继续加载一次
@@ -104,6 +105,7 @@ export default class StarListContainer extends Component {
     render() {
         return (
             <div className='starsContainer'>
+                <SearchBox />
                 <Box display='flex' justifyContent='center'>
                     <Box column={this.winWidth > 768 ? 8 : 12} paddingX={this.winWidth > 768 ? 8 : 2} marginTop={3} alignContent='center'>
                         <Box paddingY={2} paddingX={2}>
