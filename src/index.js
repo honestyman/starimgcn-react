@@ -12,7 +12,7 @@ import WebApp from './containers/WebApp'
 function App() {
   return (
     <Provider store={store}>
-      <DocumentTitle title={`快来pick你喜欢的爱豆 | starImg`}>
+      <DocumentTitle title={`一梦浮生 - 快来pick你喜欢的爱豆 | starImg`}>
         <WebApp />
       </DocumentTitle>
     </Provider>
