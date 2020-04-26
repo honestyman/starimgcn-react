@@ -53,7 +53,7 @@ export default class WebApp extends Component {
 							>
 								鲁ICP备 - 15006514号-8
 							</a>
-							&copy; myhistorybook.cn@2020
+							&copy;starimg.cn@2020
 						</p>
 					</footer>
 					{/* toast */}
