@@ -47,7 +47,7 @@ export default class WebApp extends Component {
                             opacity: '0.7'
                         }}>
 							<a
-								href="http://www.beian.miit.gov.cn"
+								href="https://www.beian.miit.gov.cn"
 								target="_blank"
 								style={{ color: "#999",marginRight: '10px' }}
 							>
