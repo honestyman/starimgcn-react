@@ -51,7 +51,7 @@ export default class WebApp extends Component {
 								target="_blank"
 								style={{ color: "#999",marginRight: '10px' }}
 							>
-								鲁ICP备 - 15006514号-7
+								鲁ICP备 - 15006514号-8
 							</a>
 							&copy; myhistorybook.cn@2020
 						</p>
